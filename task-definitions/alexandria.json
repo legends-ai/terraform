@@ -13,6 +13,7 @@
       "--cassandra_hosts=cassandra",
       "--matches_bucket=matches-dev"
     ],
+    "links": ["cassandra"],
     "portMappings": [
       {
         "containerPort": 22045,
