@@ -6,9 +6,7 @@
     "memory": 512,
     "essential": true,
     "links": [
-      "alexandria",
-      "charon",
-      "nova-queue"
+      "queue"
     ],
     "entryPoint": [
       "java",

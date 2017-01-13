@@ -5,10 +5,6 @@
     "cpu": 512,
     "memory": 512,
     "essential": true,
-    "links": [
-      "lucinda",
-      "vulgate"
-    ],
     "entryPoint": [
       "./helios",
       "--lucinda_host=lucinda:45045",

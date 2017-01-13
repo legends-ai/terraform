@@ -6,9 +6,7 @@
     "memory": 512,
     "essential": true,
     "links": [
-      "cassandra",
-      "lucinda-cache",
-      "vulgate"
+      "cache"
     ],
     "entryPoint": [
       "java",
