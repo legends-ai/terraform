@@ -3,11 +3,32 @@ variable "aws_region" {
 }
 
 provider "aws" {
-  region     = "${var.aws_region}"
-  profile    = "asuna"
+  region = "${var.aws_region}"
+  profile = "asuna"
 }
 
-resource "aws_instance" "never_let_it_die" {
-  ami = "ami-0d729a60"
-  instance_type = "t2.micro"
+resource "aws_ecs_cluster" "asuna" {
+  name = "asuna"
+}
+
+// Alexandria
+resource "aws_ecr_repository" "alexandria" {
+  name = "alexandria"
+}
+
+resource "aws_ecs_task_definition" "alexandria" {
+  family = "alexandria"
+  container_definitions = "${file("task-definitions/alexandria.json")}"
+
+  volume {
+    name = "alexandria-storage"
+    host_path = "/ecs/alexandria-storage"
+  }
+}
+
+resource "aws_ecs_service" "alexandria" {
+  name = "alexandria"
+  cluster = "${aws_ecs_cluster.asuna.id}"
+  task_definition = "${aws_ecs_task_definition.alexandria.arn}"
+  desired_count = 1
 }

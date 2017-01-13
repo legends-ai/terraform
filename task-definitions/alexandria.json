@@ -1,0 +1,58 @@
+[
+  {
+    "name": "alexandria",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/alexandria",
+    "cpu": 512,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [
+      "java",
+      "-jar",
+      "/app/alexandria-assembly.jar",
+      "--keyspace=alexandria_dev",
+      "--cassandra_hosts=cassandra",
+      "--matches_bucket=matches-dev"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 22045,
+        "hostPort": 22045
+      },
+      {
+        "containerPort": 22046,
+        "hostPort": 22046
+      }
+    ]
+  },
+  {
+    "name": "cassandra",
+    "image": "cassandra:3.9",
+    "cpu": 512,
+    "memory": 1024,
+    "essential": true,
+    "mountPoints": [
+      {
+        "sourceVolume": "alexandria-storage",
+        "containerPath": "/var/lib/cassandra"
+      }
+    ],
+    "portMappings": [
+      {
+        "containerPort": 7000,
+        "hostPort": 7000
+      },
+      {
+        "containerPort": 7001,
+        "hostPort": 7001
+      },
+      {
+        "containerPort": 9042,
+        "hostPort": 9042
+      },
+      {
+        "containerPort": 9160,
+        "hostPort": 9160
+      }
+    ]
+  }
+]
