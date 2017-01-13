@@ -75,3 +75,37 @@ resource "aws_ecs_service" "helios" {
   task_definition = "${aws_ecs_task_definition.helios.arn}"
   desired_count = 1
 }
+
+// Legends.ai
+resource "aws_ecr_repository" "legends-ai" {
+  name = "legends-ai"
+}
+
+resource "aws_ecs_task_definition" "legends-ai" {
+  family = "legends-ai"
+  container_definitions = "${file("task-definitions/legends-ai.json")}"
+}
+
+resource "aws_ecs_service" "legends-ai" {
+  name = "legends-ai"
+  cluster = "${aws_ecs_cluster.asuna.id}"
+  task_definition = "${aws_ecs_task_definition.legends-ai.arn}"
+  desired_count = 1
+}
+
+// Lucinda
+resource "aws_ecr_repository" "lucinda" {
+  name = "lucinda"
+}
+
+resource "aws_ecs_task_definition" "lucinda" {
+  family = "lucinda"
+  container_definitions = "${file("task-definitions/lucinda.json")}"
+}
+
+resource "aws_ecs_service" "lucinda" {
+  name = "lucinda"
+  cluster = "${aws_ecs_cluster.asuna.id}"
+  task_definition = "${aws_ecs_task_definition.lucinda.arn}"
+  desired_count = 1
+}

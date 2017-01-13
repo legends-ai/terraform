@@ -1,0 +1,35 @@
+[
+  {
+    "name": "lucinda",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/lucinda:latest",
+    "cpu": 512,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [
+      "java",
+      "-jar",
+      "/app/lucinda-assembly.jar",
+      "--cassandra_hosts=cassandra",
+      "--redis_host=lucinda-cache",
+      "--vulgate_host=vulgate",
+      "--vulgate_port=6205"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 45045,
+        "hostPort": 45045
+      },
+      {
+        "containerPort": 45046,
+        "hostPort": 45046
+      }
+    ]
+  },
+  {
+    "name": "cache",
+    "image": "redis:3.2.5",
+    "cpu": 512,
+    "memory": 512,
+    "essential": true
+  }
+]

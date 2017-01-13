@@ -1,0 +1,22 @@
+[
+  {
+    "name": "legends-ai",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/legends-ai:latest",
+    "cpu": 512,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [
+      "node",
+      "build/server.js"
+    ],
+    "environment": {
+      "PORT": "7448"
+    },
+    "portMappings": [
+      {
+        "containerPort": 7448,
+        "hostPort": 7448
+      }
+    ]
+  }
+]
