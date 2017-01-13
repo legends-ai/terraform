@@ -1,0 +1,24 @@
+[
+  {
+    "name": "helios",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/helios:latest",
+    "cpu": 512,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [
+      "./helios",
+      "--lucinda_host=lucinda:45045",
+      "--vulgate_host=vulgate:6205"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 7921,
+        "hostPort": 7921
+      },
+      {
+        "containerPort": 7922,
+        "hostPort": 7922
+      }
+    ]
+  }
+]

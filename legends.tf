@@ -58,3 +58,20 @@ resource "aws_ecs_service" "charon" {
   task_definition = "${aws_ecs_task_definition.charon.arn}"
   desired_count = 1
 }
+
+// Helios
+resource "aws_ecr_repository" "helios" {
+  name = "helios"
+}
+
+resource "aws_ecs_task_definition" "helios" {
+  family = "helios"
+  container_definitions = "${file("task-definitions/helios.json")}"
+}
+
+resource "aws_ecs_service" "helios" {
+  name = "helios"
+  cluster = "${aws_ecs_cluster.asuna.id}"
+  task_definition = "${aws_ecs_task_definition.helios.arn}"
+  desired_count = 1
+}
