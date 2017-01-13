@@ -17,13 +17,29 @@
       "--alexandria_port=22045",
       "--charon_host=charon",
       "--charon_port=5609"
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "nova"
+      }
+    }
   },
   {
     "name": "queue",
     "image": "redis:3.2.5",
     "cpu": 512,
     "memory": 512,
-    "essential": true
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "nova-queue"
+      }
+    }
   }
 ]

@@ -17,6 +17,14 @@
         "containerPort": 7448,
         "hostPort": 7448
       }
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "legends-ai"
+      }
+    }
   }
 ]

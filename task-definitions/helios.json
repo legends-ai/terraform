@@ -19,6 +19,14 @@
         "containerPort": 7922,
         "hostPort": 7922
       }
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "helios"
+      }
+    }
   }
 ]

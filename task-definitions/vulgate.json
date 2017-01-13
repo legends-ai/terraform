@@ -13,13 +13,29 @@
       "--charon_port=5609",
       "--redis_host=vulgate-cache",
       "--redis_port=6379"
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "vulgate"
+      }
+    }
   },
   {
     "name": "cache",
     "image": "redis:3.2.5",
     "cpu": 512,
     "memory": 512,
-    "essential": true
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "vulgate-cache"
+      }
+    }
   }
 ]

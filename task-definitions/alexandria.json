@@ -23,7 +23,15 @@
         "containerPort": 22046,
         "hostPort": 22046
       }
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "alexandria"
+      }
+    }
   },
   {
     "name": "cassandra",
@@ -54,6 +62,14 @@
         "containerPort": 9160,
         "hostPort": 9160
       }
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "cassandra"
+      }
+    }
   }
 ]
