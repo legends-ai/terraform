@@ -126,3 +126,20 @@ resource "aws_ecs_service" "nova" {
   task_definition = "${aws_ecs_task_definition.nova.arn}"
   desired_count = 1
 }
+
+// Vulgate
+resource "aws_ecr_repository" "vulgate" {
+  name = "vulgate"
+}
+
+resource "aws_ecs_task_definition" "vulgate" {
+  family = "vulgate"
+  container_definitions = "${file("task-definitions/vulgate.json")}"
+}
+
+resource "aws_ecs_service" "vulgate" {
+  name = "vulgate"
+  cluster = "${aws_ecs_cluster.asuna.id}"
+  task_definition = "${aws_ecs_task_definition.vulgate.arn}"
+  desired_count = 1
+}
