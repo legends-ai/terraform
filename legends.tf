@@ -14,10 +14,6 @@ resource "aws_ecs_cluster" "asuna" {
 }
 
 // Alexandria
-resource "aws_ecr_repository" "alexandria" {
-  name = "alexandria"
-}
-
 resource "aws_ecs_task_definition" "alexandria" {
   family = "alexandria"
   container_definitions = "${file("task-definitions/alexandria.json")}"
@@ -43,10 +39,6 @@ data "template_file" "charon_task_definition" {
   }
 }
 
-resource "aws_ecr_repository" "charon" {
-  name = "charon"
-}
-
 resource "aws_ecs_task_definition" "charon" {
   family = "charon"
   container_definitions = "${data.template_file.charon_task_definition.rendered}"
@@ -60,10 +52,6 @@ resource "aws_ecs_service" "charon" {
 }
 
 // Helios
-resource "aws_ecr_repository" "helios" {
-  name = "helios"
-}
-
 resource "aws_ecs_task_definition" "helios" {
   family = "helios"
   container_definitions = "${file("task-definitions/helios.json")}"
@@ -77,10 +65,6 @@ resource "aws_ecs_service" "helios" {
 }
 
 // Legends.ai
-resource "aws_ecr_repository" "legends-ai" {
-  name = "legends-ai"
-}
-
 resource "aws_ecs_task_definition" "legends-ai" {
   family = "legends-ai"
   container_definitions = "${file("task-definitions/legends-ai.json")}"
@@ -94,10 +78,6 @@ resource "aws_ecs_service" "legends-ai" {
 }
 
 // Lucinda
-resource "aws_ecr_repository" "lucinda" {
-  name = "lucinda"
-}
-
 resource "aws_ecs_task_definition" "lucinda" {
   family = "lucinda"
   container_definitions = "${file("task-definitions/lucinda.json")}"
@@ -111,10 +91,6 @@ resource "aws_ecs_service" "lucinda" {
 }
 
 // Nova
-resource "aws_ecr_repository" "nova" {
-  name = "nova"
-}
-
 resource "aws_ecs_task_definition" "nova" {
   family = "nova"
   container_definitions = "${file("task-definitions/nova.json")}"
@@ -128,10 +104,6 @@ resource "aws_ecs_service" "nova" {
 }
 
 // Vulgate
-resource "aws_ecr_repository" "vulgate" {
-  name = "vulgate"
-}
-
 resource "aws_ecs_task_definition" "vulgate" {
   family = "vulgate"
   container_definitions = "${file("task-definitions/vulgate.json")}"
