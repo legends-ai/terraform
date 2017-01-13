@@ -109,3 +109,20 @@ resource "aws_ecs_service" "lucinda" {
   task_definition = "${aws_ecs_task_definition.lucinda.arn}"
   desired_count = 1
 }
+
+// Nova
+resource "aws_ecr_repository" "nova" {
+  name = "nova"
+}
+
+resource "aws_ecs_task_definition" "nova" {
+  family = "nova"
+  container_definitions = "${file("task-definitions/nova.json")}"
+}
+
+resource "aws_ecs_service" "nova" {
+  name = "nova"
+  cluster = "${aws_ecs_cluster.asuna.id}"
+  task_definition = "${aws_ecs_task_definition.nova.arn}"
+  desired_count = 1
+}
