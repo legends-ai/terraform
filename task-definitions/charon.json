@@ -1,0 +1,28 @@
+[
+  {
+    "name": "charon",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/charon",
+    "cpu": 512,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [
+      "java",
+      "-jar",
+      "/app/charon-assembly.jar",
+      "--riot_api_key=${riot_api_key}",
+      "--req_per_10min=180000",
+      "--req_per_10sec=3000",
+      "--capacity_multiplier=0.8"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 5609,
+        "hostPort": 5609
+      },
+      {
+        "containerPort": 5610,
+        "hostPort": 5610
+      }
+    ]
+  }
+]

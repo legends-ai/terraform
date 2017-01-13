@@ -1,3 +1,5 @@
+variable "riot_api_key" {}
+
 variable "aws_region" {
   default = "us-east-1"
 }
@@ -30,5 +32,29 @@ resource "aws_ecs_service" "alexandria" {
   name = "alexandria"
   cluster = "${aws_ecs_cluster.asuna.id}"
   task_definition = "${aws_ecs_task_definition.alexandria.arn}"
+  desired_count = 1
+}
+
+// Charon
+data "template_file" "charon_task_definition" {
+  template = "${file("task-definitions/charon.json")}"
+  vars {
+    riot_api_key = "${var.riot_api_key}"
+  }
+}
+
+resource "aws_ecr_repository" "charon" {
+  name = "charon"
+}
+
+resource "aws_ecs_task_definition" "charon" {
+  family = "charon"
+  container_definitions = "${data.template_file.charon_task_definition.rendered}"
+}
+
+resource "aws_ecs_service" "charon" {
+  name = "charon"
+  cluster = "${aws_ecs_cluster.asuna.id}"
+  task_definition = "${aws_ecs_task_definition.charon.arn}"
   desired_count = 1
 }
