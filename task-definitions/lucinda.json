@@ -5,6 +5,11 @@
     "cpu": 512,
     "memory": 512,
     "essential": true,
+    "links": [
+      "cassandra",
+      "lucinda-cache",
+      "vulgate"
+    ],
     "entryPoint": [
       "java",
       "-jar",

@@ -5,6 +5,10 @@
     "cpu": 512,
     "memory": 512,
     "essential": true,
+    "lins": [
+      "charon",
+      "vulgate-cache"
+    ],
     "entryPoint": [
       "java",
       "-jar",

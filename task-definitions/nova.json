@@ -5,6 +5,11 @@
     "cpu": 512,
     "memory": 512,
     "essential": true,
+    "links": [
+      "alexandria",
+      "charon",
+      "nova-queue"
+    ],
     "entryPoint": [
       "java",
       "-jar",
