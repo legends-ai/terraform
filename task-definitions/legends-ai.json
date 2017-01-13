@@ -10,7 +10,7 @@
       "build/server.js"
     ],
     "environment": [
-      {"key": "PORT", "value": "7448"}
+      {"name": "PORT", "value": "7448"}
     ],
     "portMappings": [
       {
