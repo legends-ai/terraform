@@ -47,9 +47,15 @@ resource "aws_ecs_service" "helios" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.helios.arn}"
   desired_count = 1
+
+  load_balancer {
+    elb_name = "${aws_elb.helios.id}"
+    container_name = "helios"
+    container_port = 7921
+  }
 }
 
-resource "aws_elb" "helios-elb" {
+resource "aws_elb" "helios" {
   name = "helios-elb"
   availability_zones = ["${var.availability_zone}"]
 
@@ -125,20 +131,6 @@ resource "aws_ecs_service" "nova" {
 }
 
 // Vulgate
-resource "aws_elb" "vulgate" {
-  name = "vulgate-elb"
-  security_groups = ["${aws_security_group.load_balancers.id}"]
-  subnets = ["${aws_subnet.main.id}"]
-
-  listener {
-    lb_protocol = "http"
-    lb_port = 6205
-
-    instance_protocol = "http"
-    instance_port = 6205
-  }
-}
-
 resource "aws_ecs_task_definition" "vulgate" {
   family = "vulgate"
   container_definitions = "${file("task-definitions/vulgate.json")}"
@@ -156,5 +148,31 @@ resource "aws_ecs_service" "vulgate" {
     elb_name = "${aws_elb.vulgate.id}"
     container_name = "vulgate"
     container_port = 6205
+  }
+}
+
+resource "aws_elb" "vulgate" {
+  name = "vulgate-elb"
+
+  access_logs {
+    bucket = "asuna"
+    bucket_prefix = "vulgate-elb"
+    interval = 60
+  }
+
+  listener {
+    lb_protocol = "http"
+    lb_port = 6205
+
+    instance_protocol = "http"
+    instance_port = 6205
+  }
+
+  idle_timeout = 60
+  connection_draining = true
+  connection_draining_timeout = 300
+
+  tags {
+    Name = "vulgate-elb"
   }
 }
