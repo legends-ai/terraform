@@ -141,3 +141,8 @@ resource "aws_iam_instance_profile" "ecs" {
     path = "/"
     roles = ["${aws_iam_role.ecs_host_role.name}"]
 }
+
+resource "aws_cloudwatch_log_group" "asuna" {
+  # TODO(igm): interpolate
+  name = "asuna"
+}
