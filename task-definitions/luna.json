@@ -1,0 +1,32 @@
+[
+  {
+    "name": "luna",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/luna:latest",
+    "cpu": 512,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [
+      "java",
+      "-jar",
+      "/app/luna-assembly.jar"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 2389,
+        "hostPort": 2389
+      },
+      {
+        "containerPort": 2390,
+        "hostPort": 2390
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "luna"
+      }
+    }
+  }
+]
