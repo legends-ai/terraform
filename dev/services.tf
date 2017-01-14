@@ -173,7 +173,7 @@ resource "aws_elb" "legends-ai" {
     instance_port = 7448
     instance_protocol = "http"
     lb_port = 80
-    lb_protocol = "http
+    lb_protocol = "http"
   }
 
   idle_timeout = 60
