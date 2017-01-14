@@ -49,6 +49,42 @@ resource "aws_ecs_service" "helios" {
   desired_count = 1
 }
 
+resource "aws_elb" "helios-elb" {
+  name = "helios-elb"
+  availability_zones = ["${var.availability_zone}"]
+
+  access_logs {
+    bucket = "asuna"
+    bucket_prefix = "helios-elb"
+    interval = 60
+  }
+
+  listener {
+    instance_port = 7921
+    instance_protocol = "http"
+    lb_port = 443
+    lb_protocol = "https"
+    ssl_certificate_id = "${var.asuna-io_ssl_certificate_arn}"
+  }
+
+  health_check {
+    healthy_threshold = 2
+    unhealthy_threshold = 2
+    timeout = 3
+    target = "HTTPS:7922/health"
+    interval = 30
+  }
+
+  # TODO instances = ["${aws_instance.id}"]
+  idle_timeout = 60
+  connection_draining = true
+  connection_draining_timeout = 300
+
+  tags {
+    Name = "helios-elb"
+  }
+}
+
 // Legends.ai
 resource "aws_ecs_task_definition" "legends-ai" {
   family = "legends-ai"

@@ -25,6 +25,10 @@ variable "amis" {
   }
 }
 
+variable "asunaio-io_ssl_certificate_arn" {
+  description = "The ssl certificate ARN for asuna.io, *.asuna.io, *.dev.asuna.io"
+}
+
 variable "autoscale_min" {
   default = "1"
   description = "Minimum autoscale (number of EC2)"
