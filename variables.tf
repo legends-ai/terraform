@@ -25,7 +25,7 @@ variable "amis" {
   }
 }
 
-variable "asunaio-io_ssl_certificate_arn" {
+variable "asuna-io_ssl_certificate_arn" {
   description = "The ssl certificate ARN for asuna.io, *.asuna.io, *.dev.asuna.io"
 }
 
