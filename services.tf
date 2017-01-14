@@ -162,6 +162,7 @@ resource "aws_ecs_service" "vulgate" {
 
 resource "aws_elb" "vulgate" {
   name = "vulgate-elb"
+  subnets = ["${aws_subnet.main.id}"]
 
   listener {
     lb_protocol = "http"
