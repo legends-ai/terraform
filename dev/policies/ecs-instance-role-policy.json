@@ -16,7 +16,8 @@
         "ecs:StartTask",
         "ecs:StartTelemetrySession",
         "ecs:Submit*",
-        "logs:CreateLogStream"
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
       ],
       "Resource": "*"
     }
