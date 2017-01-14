@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "alexandria" {
 
 resource "aws_ecs_service" "alexandria" {
   name = "alexandria"
-  cluster = "${aws_ecs_cluster.asuna.id}"
+  cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.alexandria.arn}"
   desired_count = 1
 }
@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "charon" {
 
 resource "aws_ecs_service" "charon" {
   name = "charon"
-  cluster = "${aws_ecs_cluster.asuna.id}"
+  cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.charon.arn}"
   desired_count = 1
 }
@@ -44,7 +44,7 @@ resource "aws_ecs_task_definition" "helios" {
 
 resource "aws_ecs_service" "helios" {
   name = "helios"
-  cluster = "${aws_ecs_cluster.asuna.id}"
+  cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.helios.arn}"
   desired_count = 1
 }
@@ -57,7 +57,7 @@ resource "aws_ecs_task_definition" "legends-ai" {
 
 resource "aws_ecs_service" "legends-ai" {
   name = "legends-ai"
-  cluster = "${aws_ecs_cluster.asuna.id}"
+  cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.legends-ai.arn}"
   desired_count = 1
 }
@@ -70,7 +70,7 @@ resource "aws_ecs_task_definition" "lucinda" {
 
 resource "aws_ecs_service" "lucinda" {
   name = "lucinda"
-  cluster = "${aws_ecs_cluster.asuna.id}"
+  cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.lucinda.arn}"
   desired_count = 1
 }
@@ -83,7 +83,7 @@ resource "aws_ecs_task_definition" "nova" {
 
 resource "aws_ecs_service" "nova" {
   name = "nova"
-  cluster = "${aws_ecs_cluster.asuna.id}"
+  cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.nova.arn}"
   desired_count = 1
 }
@@ -96,7 +96,7 @@ resource "aws_ecs_task_definition" "vulgate" {
 
 resource "aws_ecs_service" "vulgate" {
   name = "vulgate"
-  cluster = "${aws_ecs_cluster.asuna.id}"
+  cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.vulgate.arn}"
   desired_count = 1
 }
