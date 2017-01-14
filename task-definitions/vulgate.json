@@ -18,6 +18,12 @@
       "--redis_host=vulgate-cache",
       "--redis_port=6379"
     ],
+    "portMappings": [
+      {
+        "containerPort": 6205,
+        "hostPort": 6205
+      }
+    ],
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {

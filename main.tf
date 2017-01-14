@@ -114,7 +114,6 @@ resource "aws_launch_configuration" "ecs" {
     user_data = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs_cluster_name}' > /etc/ecs/ecs.config"
 }
 
-
 resource "aws_iam_role" "ecs_host_role" {
     name = "ecs_host_role"
     assume_role_policy = "${file("policies/ecs-role.json")}"

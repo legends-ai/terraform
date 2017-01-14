@@ -132,21 +132,11 @@ resource "aws_elb" "vulgate" {
 
   listener {
     lb_protocol = "http"
-    lb_port = 80
+    lb_port = 6205
 
     instance_protocol = "http"
-    instance_port = 8080
+    instance_port = 6205
   }
-
-  health_check {
-    healthy_threshold = 3
-    unhealthy_threshold = 2
-    timeout = 3
-    target = "HTTP:8080/hello-world"
-    interval = 5
-  }
-
-  cross_zone_load_balancing = true
 }
 
 resource "aws_ecs_task_definition" "vulgate" {
