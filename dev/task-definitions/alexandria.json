@@ -39,7 +39,7 @@
     "name": "cassandra",
     "image": "cassandra:3.9",
     "cpu": 512,
-    "memory": 2048,
+    "memory": 3072,
     "essential": true,
     "mountPoints": [
       {
