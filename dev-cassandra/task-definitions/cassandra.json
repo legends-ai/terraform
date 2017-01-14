@@ -1,0 +1,41 @@
+[
+  {
+    "name": "cassandra",
+    "image": "cassandra:3.9",
+    "cpu": 512,
+    "memory": 3072,
+    "essential": true,
+    "mountPoints": [
+      {
+        "sourceVolume": "cassandra-storage",
+        "containerPath": "/var/lib/cassandra"
+      }
+    ],
+    "portMappings": [
+      {
+        "containerPort": 7000,
+        "hostPort": 7000
+      },
+      {
+        "containerPort": 7001,
+        "hostPort": 7001
+      },
+      {
+        "containerPort": 9042,
+        "hostPort": 9042
+      },
+      {
+        "containerPort": 9160,
+        "hostPort": 9160
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "cassandra"
+      }
+    }
+  }
+]

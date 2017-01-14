@@ -1,7 +1,3 @@
-variable "riot_api_key" {
-  description = "The Riot API key."
-}
-
 variable "region" {
   description = "The AWS region."
   default = "us-east-1"
@@ -14,7 +10,7 @@ variable "availability_zone" {
 
 variable "ecs_cluster_name" {
   description = "The name of the Amazon ECS cluster."
-  default = "dev"
+  default = "dev-cassandra"
 }
 
 variable "amis" {
@@ -23,10 +19,6 @@ variable "amis" {
   default = {
     us-east-1 = "ami-a58760b3"
   }
-}
-
-variable "asunaio_ssl_certificate_arn" {
-  description = "The ssl certificate ARN for asuna.io, *.asuna.io, *.dev.asuna.io"
 }
 
 variable "autoscale_min" {
@@ -46,7 +38,7 @@ variable "autoscale_desired" {
 
 
 variable "instance_type" {
-  default = "m4.xlarge"
+  default = "m4.large"
 }
 
 variable "ssh_pubkey_file" {
