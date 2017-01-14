@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 resource "aws_key_pair" "user" {
-  key_name = "ian-key"
+  key_name = "asuna-dev-ecs"
   public_key = "${file(var.ssh_pubkey_file)}"
 }
 

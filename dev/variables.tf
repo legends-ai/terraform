@@ -44,6 +44,28 @@ variable "autoscale_desired" {
   description = "Desired autoscale (number of EC2)"
 }
 
+variable "cassandra_amis" {
+  description = "Which AMI to spawn. Defaults to the Bitnami HVM image."
+  # TODO: support other regions.
+  default = {
+    us-east-1 = "ami-17326800"
+  }
+}
+
+variable "cassandra_autoscale_min" {
+  default = "1"
+  description = "Minimum cassandra_autoscale (number of EC2)"
+}
+
+variable "cassandra_autoscale_max" {
+  default = "1"
+  description = "Maximum cassandra_autoscale (number of EC2)"
+}
+
+variable "cassandra_autoscale_desired" {
+  default = "1"
+  description = "Desired cassandra_autoscale (number of EC2)"
+}
 
 variable "instance_type" {
   default = "m4.xlarge"
@@ -51,5 +73,5 @@ variable "instance_type" {
 
 variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
-  default = "~/.ssh/id_rsa.pub"
+  default = "~/asuna-dev-ecs.pub"
 }
