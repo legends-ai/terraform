@@ -113,6 +113,19 @@ resource "aws_ecs_service" "lucinda" {
   desired_count = 1
 }
 
+// Luna
+resource "aws_ecs_task_definition" "luna" {
+  family = "luna"
+  container_definitions = "${file("task-definitions/luna.json")}"
+}
+
+resource "aws_ecs_service" "luna" {
+  name = "luna"
+  cluster = "${aws_ecs_cluster.main.id}"
+  task_definition = "${aws_ecs_task_definition.luna.arn}"
+  desired_count = 1
+}
+
 // Nova
 resource "aws_ecs_task_definition" "nova" {
   family = "nova"
