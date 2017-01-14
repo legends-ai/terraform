@@ -28,7 +28,7 @@ resource "aws_launch_configuration" "cassandra" {
   ebs_block_device {
     device_name = "cassandra_data"
     volume_type = "gp2"
-    volume_size = "20" # GB
+    volume_size = "40" # GB
     delete_on_termination = false
   }
 
