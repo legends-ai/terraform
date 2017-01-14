@@ -17,13 +17,26 @@ resource "aws_instance" "cassandra_0" {
     delete_on_termination = true
   }
 
-  ebs_block_device {
-    device_name = "cassandra_data"
-    volume_type = "gp2"
-    volume_size = "40" # GB
-    delete_on_termination = false
+  provisioner "local-exec" {
+    command = "mount /dev/sdh /var/lib/cassandra"
   }
 }
+
+resource "aws_volume_attachment" "cassandra_0_data" {
+  device_name = "/dev/sdh"
+  volume_id = "${aws_ebs_volume.cassandra_0.id}"
+  instance_id = "${aws_instance.cassandra_0.id}"
+}
+
+resource "aws_ebs_volume" "cassandra_0" {
+  availability_zone = "${var.availability_zone}"
+  size = 40
+  type = "gp2"
+  tags {
+    Name = "HelloWorld"
+  }
+}
+
 
 resource "aws_eip" "cassandra_0" {
   instance = "${aws_instance.cassandra_0.id}"
