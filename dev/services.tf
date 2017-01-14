@@ -16,7 +16,7 @@ resource "aws_ecs_service" "alexandria" {
   desired_count = 1
 
   load_balancer {
-    elb_name = "${aws_elb.alexandrid.id}"
+    elb_name = "${aws_elb.alexandria.id}"
     container_name = "alexandria"
     container_port = 22045
   }
