@@ -89,6 +89,30 @@ resource "aws_ecs_service" "nova" {
 }
 
 // Vulgate
+resource "aws_elb" "vulgate" {
+  name = "vulgate-elb"
+  security_groups = ["${aws_security_group.load_balancers.id}"]
+  subnets = ["${aws_subnet.main.id}"]
+
+  listener {
+    lb_protocol = "http"
+    lb_port = 80
+
+    instance_protocol = "http"
+    instance_port = 8080
+  }
+
+  health_check {
+    healthy_threshold = 3
+    unhealthy_threshold = 2
+    timeout = 3
+    target = "HTTP:8080/hello-world"
+    interval = 5
+  }
+
+  cross_zone_load_balancing = true
+}
+
 resource "aws_ecs_task_definition" "vulgate" {
   family = "vulgate"
   container_definitions = "${file("task-definitions/vulgate.json")}"
@@ -99,4 +123,12 @@ resource "aws_ecs_service" "vulgate" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.vulgate.arn}"
   desired_count = 1
+  iam_role = "${aws_iam_role.ecs_service_role.arn}"
+  depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  load_balancer {
+    elb_name = "${aws_elb.vulgate.id}"
+    container_name = "vulgate"
+    container_port = 6205
+  }
 }
