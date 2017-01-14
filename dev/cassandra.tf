@@ -1,23 +1,15 @@
-resource "aws_autoscaling_group" "cassandra-cluster" {
-  availability_zones = ["${var.availability_zone}"]
-  name = "cassandra-dev"
-  min_size = "${var.cassandra_autoscale_min}"
-  max_size = "${var.cassandra_autoscale_max}"
-  desired_capacity = "${var.cassandra_autoscale_desired}"
-  health_check_type = "EC2"
-  launch_configuration = "${aws_launch_configuration.ecs.name}"
-  vpc_zone_identifier = ["${aws_subnet.main.id}"]
-}
-
-resource "aws_launch_configuration" "cassandra" {
-  name = "cassandra-dev"
-  image_id = "${lookup(var.cassandra_amis, var.region)}"
+resource "aws_instance" "cassandra_0" {
   instance_type = "m4.large"
-  security_groups = ["${aws_security_group.ecs.id}"]
-  iam_instance_profile = "${aws_iam_instance_profile.ecs.name}"
+  ami = "${lookup(var.cassandra_amis, var.region)}"
   key_name = "${aws_key_pair.user.key_name}"
-  associate_public_ip_address = false
+  subnet_id = "${aws_subnet.main.id}"
+  vpc_security_group_ids = ["${aws_security_group.ecs.id}"]
   ebs_optimized = true
+  associate_public_ip_address = false
+
+  tags {
+    Name = "cassandra_0"
+  }
 
   root_block_device {
     volume_type = "gp2"
@@ -31,5 +23,22 @@ resource "aws_launch_configuration" "cassandra" {
     volume_size = "40" # GB
     delete_on_termination = false
   }
+}
 
+resource "aws_eip" "cassandra_0" {
+  instance = "${aws_instance.cassandra_0.id}"
+  vpc      = true
+}
+
+resource "aws_route53_zone" "cassandra" {
+  name = "cassandra.dev."
+  vpc_id = "${aws_vpc.main.id}"
+}
+
+resource "aws_route53_record" "www" {
+  zone_id = "${aws_route53_zone.cassandra.zone_id}"
+  name = "node-0.${aws_route53_zone.cassandra.name}"
+  type = "A"
+  ttl = "300"
+  records = ["${aws_eip.cassandra_0.private_ip}"]
 }
