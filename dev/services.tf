@@ -14,6 +14,34 @@ resource "aws_ecs_service" "alexandria" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.alexandria.arn}"
   desired_count = 1
+
+  load_balancer {
+    elb_name = "${aws_elb.alexandrid.id}"
+    container_name = "alexandria"
+    container_port = 22045
+  }
+}
+
+resource "aws_elb" "alexandria" {
+  name = "alexandria-elb"
+  subnets = [
+    "${aws_subnet.main.id}"
+  ]
+
+  listener {
+    instance_port = 22045
+    instance_protocol = "http"
+    lb_port = 22045
+    lb_protocol = "http"
+  }
+
+  idle_timeout = 60
+  connection_draining = true
+  connection_draining_timeout = 300
+
+  tags {
+    Name = "alexandria-elb"
+  }
 }
 
 // Charon
@@ -34,6 +62,34 @@ resource "aws_ecs_service" "charon" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.charon.arn}"
   desired_count = 1
+
+  load_balancer {
+    elb_name = "${aws_elb.charon.id}"
+    container_name = "charon"
+    container_port = 5609
+  }
+}
+
+resource "aws_elb" "charon" {
+  name = "charon-elb"
+  subnets = [
+    "${aws_subnet.main.id}"
+  ]
+
+  listener {
+    instance_port = 5609
+    instance_protocol = "http"
+    lb_port = 5609
+    lb_protocol = "http"
+  }
+
+  idle_timeout = 60
+  connection_draining = true
+  connection_draining_timeout = 300
+
+  tags {
+    Name = "charon-elb"
+  }
 }
 
 // Helios
@@ -59,7 +115,9 @@ resource "aws_ecs_service" "helios" {
 
 resource "aws_elb" "helios" {
   name = "helios-elb"
-  subnets = ["${aws_subnet.main.id}"]
+  subnets = [
+    "${aws_subnet.main.id}"
+  ]
 
   listener {
     instance_port = 7921
@@ -77,7 +135,6 @@ resource "aws_elb" "helios" {
     interval = 30
   }
 
-  # TODO instances = ["${aws_instance.id}"]
   idle_timeout = 60
   connection_draining = true
   connection_draining_timeout = 300
@@ -98,6 +155,34 @@ resource "aws_ecs_service" "legends-ai" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.legends-ai.arn}"
   desired_count = 1
+
+  load_balancer {
+    elb_name = "${aws_elb.legends-ai.id}"
+    container_name = "legends-ai"
+    container_port = 7448
+  }
+}
+
+resource "aws_elb" "legends-ai" {
+  name = "legends-ai-elb"
+  subnets = [
+    "${aws_subnet.main.id}"
+  ]
+
+  listener {
+    instance_port = 7448
+    instance_protocol = "http"
+    lb_port = 80
+    lb_protocol = "http
+  }
+
+  idle_timeout = 60
+  connection_draining = true
+  connection_draining_timeout = 300
+
+  tags {
+    Name = "legends-ai-elb"
+  }
 }
 
 // Lucinda
@@ -111,6 +196,34 @@ resource "aws_ecs_service" "lucinda" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.lucinda.arn}"
   desired_count = 1
+
+  load_balancer {
+    elb_name = "${aws_elb.lucinda.id}"
+    container_name = "lucinda"
+    container_port = 45045
+  }
+}
+
+resource "aws_elb" "lucinda" {
+  name = "lucinda-elb"
+  subnets = [
+    "${aws_subnet.main.id}"
+  ]
+
+  listener {
+    instance_port = 45045
+    instance_protocol = "http"
+    lb_port = 45045
+    lb_protocol = "http"
+  }
+
+  idle_timeout = 60
+  connection_draining = true
+  connection_draining_timeout = 300
+
+  tags {
+    Name = "lucinda-elb"
+  }
 }
 
 // Luna
@@ -124,6 +237,34 @@ resource "aws_ecs_service" "luna" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.luna.arn}"
   desired_count = 1
+
+  load_balancer {
+    elb_name = "${aws_elb.luna.id}"
+    container_name = "luna"
+    container_port = 2389
+  }
+}
+
+resource "aws_elb" "luna" {
+  name = "luna-elb"
+  subnets = [
+    "${aws_subnet.main.id}"
+  ]
+
+  listener {
+    instance_port = 2389
+    instance_protocol = "http"
+    lb_port = 2389
+    lb_protocol = "http"
+  }
+
+  idle_timeout = 60
+  connection_draining = true
+  connection_draining_timeout = 300
+
+  tags {
+    Name = "luna-elb"
+  }
 }
 
 // Nova
@@ -162,14 +303,15 @@ resource "aws_ecs_service" "vulgate" {
 
 resource "aws_elb" "vulgate" {
   name = "vulgate-elb"
-  subnets = ["${aws_subnet.main.id}"]
+  subnets = [
+    "${aws_subnet.main.id}"
+  ]
 
   listener {
-    lb_protocol = "http"
-    lb_port = 6205
-
-    instance_protocol = "http"
     instance_port = 6205
+    instance_protocol = "http"
+    lb_port = 6205
+    lb_protocol = "http"
   }
 
   idle_timeout = 60
