@@ -47,6 +47,8 @@ resource "aws_ecs_service" "helios" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.helios.arn}"
   desired_count = 1
+  iam_role = "${aws_iam_role.ecs_service_role.arn}"
+  depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
     elb_name = "${aws_elb.helios.id}"
@@ -57,20 +59,14 @@ resource "aws_ecs_service" "helios" {
 
 resource "aws_elb" "helios" {
   name = "helios-elb"
-  availability_zones = ["${var.availability_zone}"]
-
-  access_logs {
-    bucket = "asuna"
-    bucket_prefix = "helios-elb"
-    interval = 60
-  }
+  subnets = ["${aws_subnet.main.id}"]
 
   listener {
     instance_port = 7921
     instance_protocol = "http"
     lb_port = 443
     lb_protocol = "https"
-    ssl_certificate_id = "${var.asuna-io_ssl_certificate_arn}"
+    ssl_certificate_id = "${var.asunaio_ssl_certificate_arn}"
   }
 
   health_check {
@@ -153,12 +149,6 @@ resource "aws_ecs_service" "vulgate" {
 
 resource "aws_elb" "vulgate" {
   name = "vulgate-elb"
-
-  access_logs {
-    bucket = "asuna"
-    bucket_prefix = "vulgate-elb"
-    interval = 60
-  }
 
   listener {
     lb_protocol = "http"
