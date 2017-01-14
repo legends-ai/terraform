@@ -70,7 +70,7 @@
       "options": {
         "awslogs-group": "asuna",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "cassandra"
+        "awslogs-stream-prefix": "alexandria"
       }
     }
   }

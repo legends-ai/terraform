@@ -2,7 +2,7 @@
   {
     "name": "vulgate",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/nova:latest",
-    "cpu": 512,
+    "cpu": 128,
     "memory": 512,
     "essential": true,
     "lins": [
@@ -44,7 +44,7 @@
       "options": {
         "awslogs-group": "asuna",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "vulgate-cache"
+        "awslogs-stream-prefix": "vulgate"
       }
     }
   }

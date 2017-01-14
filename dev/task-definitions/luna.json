@@ -2,7 +2,7 @@
   {
     "name": "luna",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/luna:latest",
-    "cpu": 512,
+    "cpu": 128,
     "memory": 512,
     "essential": true,
     "entryPoint": [
