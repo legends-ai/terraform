@@ -14,6 +14,8 @@ resource "aws_ecs_service" "alexandria" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.alexandria.arn}"
   desired_count = 1
+  iam_role = "${aws_iam_role.ecs_service_role.arn}"
+  depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
     elb_name = "${aws_elb.alexandria.id}"
@@ -62,6 +64,8 @@ resource "aws_ecs_service" "charon" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.charon.arn}"
   desired_count = 1
+  iam_role = "${aws_iam_role.ecs_service_role.arn}"
+  depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
     elb_name = "${aws_elb.charon.id}"
@@ -155,6 +159,8 @@ resource "aws_ecs_service" "legends-ai" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.legends-ai.arn}"
   desired_count = 1
+  iam_role = "${aws_iam_role.ecs_service_role.arn}"
+  depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
     elb_name = "${aws_elb.legends-ai.id}"
@@ -196,6 +202,8 @@ resource "aws_ecs_service" "lucinda" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.lucinda.arn}"
   desired_count = 1
+  iam_role = "${aws_iam_role.ecs_service_role.arn}"
+  depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
     elb_name = "${aws_elb.lucinda.id}"
@@ -237,6 +245,8 @@ resource "aws_ecs_service" "luna" {
   cluster = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.luna.arn}"
   desired_count = 1
+  iam_role = "${aws_iam_role.ecs_service_role.arn}"
+  depends_on = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
     elb_name = "${aws_elb.luna.id}"
