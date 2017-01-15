@@ -48,7 +48,7 @@
       "options": {
         "awslogs-group": "asuna",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "lucinda-cache"
+        "awslogs-stream-prefix": "lucinda"
       }
     }
   }

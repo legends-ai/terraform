@@ -43,7 +43,7 @@
       "options": {
         "awslogs-group": "asuna",
         "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "nova-queue"
+        "awslogs-stream-prefix": "nova"
       }
     }
   }
