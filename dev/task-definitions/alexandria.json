@@ -12,9 +12,6 @@
       "--keyspace=alexandria_dev",
       "--cassandra_hosts=node-0.cassandra.dev"
     ],
-    "links": [
-      "cassandra"
-    ],
     "portMappings": [
       {
         "containerPort": 22045,
