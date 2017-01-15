@@ -62,14 +62,9 @@ resource "aws_eip" "cassandra_0" {
   vpc      = true
 }
 
-resource "aws_route53_zone" "cassandra" {
-  name   = "cassandra.dev"
-  vpc_id = "${aws_vpc.main.id}"
-}
-
 resource "aws_route53_record" "cassandra" {
-  zone_id = "${aws_route53_zone.cassandra.zone_id}"
-  name    = "node-0.${aws_route53_zone.cassandra.name}"
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "node-0.cassandra.${aws_route53_zone.main.name}"
   type    = "A"
   ttl     = "300"
   records = ["${aws_eip.cassandra_0.private_ip}"]

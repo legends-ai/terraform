@@ -13,6 +13,11 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 }
 
+resource "aws_route53_zone" "main" {
+  name   = "dev"
+  vpc_id = "${aws_vpc.main.id}"
+}
+
 resource "aws_route_table" "external" {
   vpc_id = "${aws_vpc.main.id}"
 

@@ -1,9 +1,3 @@
-// Route 53 private zone
-resource "aws_route53_zone" "services" {
-  name   = ".dev"
-  vpc_id = "${aws_vpc.main.id}"
-}
-
 // Alexandria
 resource "aws_ecs_task_definition" "alexandria" {
   family                = "alexandria"
@@ -54,8 +48,8 @@ resource "aws_elb" "alexandria" {
 }
 
 resource "aws_route53_record" "alexandria" {
-  zone_id = "${aws_route53_zone.services.zone_id}"
-  name    = "alexandria.${aws_route53_zone.services.name}"
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "alexandria.${aws_route53_zone.main.name}"
   type    = "A"
 
   alias = {
@@ -118,8 +112,8 @@ resource "aws_elb" "charon" {
 }
 
 resource "aws_route53_record" "charon" {
-  zone_id = "${aws_route53_zone.services.zone_id}"
-  name    = "charon.${aws_route53_zone.services.name}"
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "charon.${aws_route53_zone.main.name}"
   type    = "A"
 
   alias = {
@@ -271,8 +265,8 @@ resource "aws_elb" "lucinda" {
 }
 
 resource "aws_route53_record" "lucinda" {
-  zone_id = "${aws_route53_zone.services.zone_id}"
-  name    = "lucinda.${aws_route53_zone.services.name}"
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "lucinda.${aws_route53_zone.main.name}"
   type    = "A"
 
   alias = {
@@ -327,8 +321,8 @@ resource "aws_elb" "luna" {
 }
 
 resource "aws_route53_record" "luna" {
-  zone_id = "${aws_route53_zone.services.zone_id}"
-  name    = "luna.${aws_route53_zone.services.name}"
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "luna.${aws_route53_zone.main.name}"
   type    = "A"
 
   alias = {
@@ -396,8 +390,8 @@ resource "aws_elb" "vulgate" {
 }
 
 resource "aws_route53_record" "vulgate" {
-  zone_id = "${aws_route53_zone.services.zone_id}"
-  name    = "vulgate.${aws_route53_zone.services.name}"
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "vulgate.${aws_route53_zone.main.name}"
   type    = "A"
 
   alias = {
