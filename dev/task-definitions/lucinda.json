@@ -40,7 +40,7 @@
   {
     "name": "cache",
     "image": "redis:3.2.5",
-    "cpu": 512,
+    "cpu": 256,
     "memory": 512,
     "essential": true,
     "logConfiguration": {
