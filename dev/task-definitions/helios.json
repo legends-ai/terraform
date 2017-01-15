@@ -7,8 +7,8 @@
     "essential": true,
     "entryPoint": [
       "./helios",
-      "--lucinda_host=lucinda:45045",
-      "--vulgate_host=vulgate:6205"
+      "--lucinda_host=lucinda.dev:45045",
+      "--vulgate_host=vulgate.dev:6205"
     ],
     "portMappings": [
       {

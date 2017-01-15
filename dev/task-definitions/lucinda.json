@@ -12,9 +12,8 @@
       "java",
       "-jar",
       "/app/lucinda-assembly.jar",
-      "--cassandra_hosts=cassandra",
       "--redis_host=lucinda-cache",
-      "--vulgate_host=vulgate",
+      "--vulgate_host=vulgate.dev",
       "--vulgate_port=6205"
     ],
     "portMappings": [
