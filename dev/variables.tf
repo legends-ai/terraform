@@ -75,3 +75,27 @@ variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
   default = "~/asuna-dev-ecs.pub"
 }
+
+variable "ssh_privkey_file" {
+  description = "Path to an SSH private key"
+  default = "~/asuna-dev-ecs.pem"
+}
+
+variable "bastion_amis" {
+  description = "Which AMI to spawn. Defaults to the AWS Linux images."
+  default = {
+    us-east-1 = "ami-9be6f38c"
+  }
+}
+
+variable "bastion_instance_type" {
+  default = "t2.nano"
+}
+
+variable "allowed_cidr_blocks"{
+  default = "0.0.0.0/0"
+}
+
+variable "internal_cidr_blocks"{
+  default = "0.0.0.0/0"
+}

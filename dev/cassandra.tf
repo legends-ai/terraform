@@ -17,15 +17,31 @@ resource "aws_instance" "cassandra_0" {
     delete_on_termination = true
   }
 
-  provisioner "local-exec" {
-    command = "mount /dev/sdh /var/lib/cassandra"
-  }
 }
 
-resource "aws_volume_attachment" "cassandra_0_data" {
-  device_name = "/dev/sdh"
+resource "aws_volume_attachment" "cassandra_0" {
+  device_name = "/dev/xvdh"
   volume_id = "${aws_ebs_volume.cassandra_0.id}"
   instance_id = "${aws_instance.cassandra_0.id}"
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo mkfs -t ext4 /dev/xvdh",
+      "sudo mkdir -p /var/lib/cassandra",
+      "sudo mount -t ext4 /dev/xvdh /var/lib/cassandra"
+    ]
+    connection {
+      host = "${aws_instance.cassandra_0.private_ip}"
+      type = "ssh"
+      user = "ubuntu"
+      timeout = "5m"
+      private_key = "${file(var.ssh_privkey_file)}"
+      bastion_host = "${aws_eip.bastion.public_ip}"
+      bastion_user = "ec2-user"
+      bastion_private_key = "${file(var.ssh_privkey_file)}"
+    }
+  }
+
 }
 
 resource "aws_ebs_volume" "cassandra_0" {
@@ -33,7 +49,7 @@ resource "aws_ebs_volume" "cassandra_0" {
   size = 40
   type = "gp2"
   tags {
-    Name = "HelloWorld"
+    Name = "Cassandra 0 data"
   }
 }
 
@@ -48,7 +64,7 @@ resource "aws_route53_zone" "cassandra" {
   vpc_id = "${aws_vpc.main.id}"
 }
 
-resource "aws_route53_record" "www" {
+resource "aws_route53_record" "cassandra" {
   zone_id = "${aws_route53_zone.cassandra.zone_id}"
   name = "node-0.${aws_route53_zone.cassandra.name}"
   type = "A"
