@@ -50,5 +50,6 @@ resource "aws_security_group" "bastion" {
 
 resource "aws_eip" "bastion" {
   instance = "${aws_instance.bastion.id}"
-  vpc      = false
+  # TODO(igm): forces new resource
+  # vpc      = false
 }

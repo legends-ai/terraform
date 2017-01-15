@@ -5,7 +5,8 @@ resource "aws_instance" "cassandra_0" {
   subnet_id = "${aws_subnet.main.id}"
   vpc_security_group_ids = ["${aws_security_group.ecs.id}"]
   ebs_optimized = true
-  associate_public_ip_address = false
+  # TODO(igm): forces new resource
+  # associate_public_ip_address = false
 
   tags {
     Name = "cassandra_0"
