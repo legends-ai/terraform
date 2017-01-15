@@ -14,7 +14,6 @@ resource "aws_instance" "cassandra_0" {
   tags {
     Name = "cassandra_0"
   }
-
   root_block_device {
     volume_type           = "gp2"
     volume_size           = "20"  # GB
