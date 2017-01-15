@@ -54,21 +54,6 @@ variable "cassandra_amis" {
   }
 }
 
-variable "cassandra_autoscale_min" {
-  default     = "1"
-  description = "Minimum cassandra_autoscale (number of EC2)"
-}
-
-variable "cassandra_autoscale_max" {
-  default     = "1"
-  description = "Maximum cassandra_autoscale (number of EC2)"
-}
-
-variable "cassandra_autoscale_desired" {
-  default     = "1"
-  description = "Desired cassandra_autoscale (number of EC2)"
-}
-
 variable "instance_type" {
   default = "m4.xlarge"
 }
