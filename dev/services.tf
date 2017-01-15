@@ -1,3 +1,9 @@
+// Route 53 private zone
+resource "aws_route53_zone" "services" {
+  name   = ".dev"
+  vpc_id = "${aws_vpc.main.id}"
+}
+
 // Alexandria
 resource "aws_ecs_task_definition" "alexandria" {
   family                = "alexandria"
@@ -44,6 +50,18 @@ resource "aws_elb" "alexandria" {
 
   tags {
     Name = "alexandria-elb"
+  }
+}
+
+resource "aws_route53_record" "alexandria" {
+  zone_id = "${aws_route53_zone.services.zone_id}"
+  name    = "alexandria.${aws_route53_zone.services.name}"
+  type    = "A"
+
+  alias = {
+    name                   = "${aws_elb.alexandria.dns_name}"
+    zone_id                = "${aws_elb.alexandria.zone_id}"
+    evaluate_target_health = false
   }
 }
 
@@ -96,6 +114,18 @@ resource "aws_elb" "charon" {
 
   tags {
     Name = "charon-elb"
+  }
+}
+
+resource "aws_route53_record" "charon" {
+  zone_id = "${aws_route53_zone.services.zone_id}"
+  name    = "charon.${aws_route53_zone.services.name}"
+  type    = "A"
+
+  alias = {
+    name                   = "${aws_elb.charon.dns_name}"
+    zone_id                = "${aws_elb.charon.zone_id}"
+    evaluate_target_health = false
   }
 }
 
@@ -240,6 +270,18 @@ resource "aws_elb" "lucinda" {
   }
 }
 
+resource "aws_route53_record" "lucinda" {
+  zone_id = "${aws_route53_zone.services.zone_id}"
+  name    = "lucinda.${aws_route53_zone.services.name}"
+  type    = "A"
+
+  alias = {
+    name                   = "${aws_elb.lucinda.dns_name}"
+    zone_id                = "${aws_elb.lucinda.zone_id}"
+    evaluate_target_health = false
+  }
+}
+
 // Luna
 resource "aws_ecs_task_definition" "luna" {
   family                = "luna"
@@ -281,6 +323,18 @@ resource "aws_elb" "luna" {
 
   tags {
     Name = "luna-elb"
+  }
+}
+
+resource "aws_route53_record" "luna" {
+  zone_id = "${aws_route53_zone.services.zone_id}"
+  name    = "luna.${aws_route53_zone.services.name}"
+  type    = "A"
+
+  alias = {
+    name                   = "${aws_elb.luna.dns_name}"
+    zone_id                = "${aws_elb.luna.zone_id}"
+    evaluate_target_health = false
   }
 }
 
@@ -338,5 +392,17 @@ resource "aws_elb" "vulgate" {
 
   tags {
     Name = "vulgate-elb"
+  }
+}
+
+resource "aws_route53_record" "vulgate" {
+  zone_id = "${aws_route53_zone.services.zone_id}"
+  name    = "vulgate.${aws_route53_zone.services.name}"
+  type    = "A"
+
+  alias = {
+    name                   = "${aws_elb.vulgate.dns_name}"
+    zone_id                = "${aws_elb.vulgate.zone_id}"
+    evaluate_target_health = false
   }
 }
