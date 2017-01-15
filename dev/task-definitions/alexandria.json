@@ -9,6 +9,8 @@
       "java",
       "-jar",
       "/app/alexandria-assembly.jar",
+      "--cassandra_user=cassandra",
+      "--cassandra_pass=bitnami",
       "--keyspace=alexandria_dev",
       "--cassandra_hosts=node-0.cassandra.dev"
     ],
