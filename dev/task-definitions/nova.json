@@ -19,7 +19,9 @@
       "--alexandria_host=alexandria.dev",
       "--alexandria_port=22045",
       "--charon_host=charon.dev",
-      "--charon_port=5609"
+      "--charon_port=5609",
+      "--luna_host=luna.dev",
+      "--luna_port=2389"
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
