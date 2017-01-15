@@ -10,8 +10,7 @@
       "-jar",
       "/app/alexandria-assembly.jar",
       "--keyspace=alexandria_dev",
-      "--cassandra_hosts=cassandra",
-      "--matches_bucket=matches-dev"
+      "--cassandra_hosts=node-0.cassandra.dev"
     ],
     "links": [
       "cassandra"
@@ -24,45 +23,6 @@
       {
         "containerPort": 22046,
         "hostPort": 22046
-      }
-    ],
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-group": "asuna",
-        "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "alexandria"
-      }
-    }
-  },
-  {
-    "name": "cassandra",
-    "image": "cassandra:3.9",
-    "cpu": 512,
-    "memory": 3072,
-    "essential": true,
-    "mountPoints": [
-      {
-        "sourceVolume": "alexandria-storage",
-        "containerPath": "/var/lib/cassandra"
-      }
-    ],
-    "portMappings": [
-      {
-        "containerPort": 7000,
-        "hostPort": 7000
-      },
-      {
-        "containerPort": 7001,
-        "hostPort": 7001
-      },
-      {
-        "containerPort": 9042,
-        "hostPort": 9042
-      },
-      {
-        "containerPort": 9160,
-        "hostPort": 9160
       }
     ],
     "logConfiguration": {
