@@ -31,6 +31,10 @@ resource "aws_elb" "alexandria" {
     "${aws_subnet.main.id}",
   ]
 
+  security_group_ids = [
+    "${aws_security_group.ecs.id}"
+  ]
+
   listener {
     instance_port     = 22045
     instance_protocol = "http"
@@ -95,6 +99,10 @@ resource "aws_elb" "charon" {
     "${aws_subnet.main.id}",
   ]
 
+  security_group_ids = [
+    "${aws_security_group.ecs.id}"
+  ]
+
   listener {
     instance_port     = 5609
     instance_protocol = "http"
@@ -151,6 +159,10 @@ resource "aws_elb" "helios" {
     "${aws_subnet.main.id}",
   ]
 
+  security_group_ids = [
+    "${aws_security_group.ecs.id}"
+  ]
+
   listener {
     instance_port      = 7921
     instance_protocol  = "http"
@@ -204,6 +216,10 @@ resource "aws_elb" "legends-ai" {
     "${aws_subnet.main.id}",
   ]
 
+  security_group_ids = [
+    "${aws_security_group.ecs.id}"
+  ]
+
   listener {
     instance_port     = 7448
     instance_protocol = "http"
@@ -246,6 +262,10 @@ resource "aws_elb" "lucinda" {
 
   subnets = [
     "${aws_subnet.main.id}",
+  ]
+
+  security_group_ids = [
+    "${aws_security_group.ecs.id}"
   ]
 
   listener {
@@ -302,6 +322,10 @@ resource "aws_elb" "luna" {
 
   subnets = [
     "${aws_subnet.main.id}",
+  ]
+
+  security_group_ids = [
+    "${aws_security_group.ecs.id}"
   ]
 
   listener {
@@ -371,6 +395,10 @@ resource "aws_elb" "vulgate" {
 
   subnets = [
     "${aws_subnet.main.id}",
+  ]
+
+  security_group_ids = [
+    "${aws_security_group.ecs.id}"
   ]
 
   listener {
