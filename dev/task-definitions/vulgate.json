@@ -15,7 +15,7 @@
       "/app/vulgate-assembly.jar",
       "--charon_host=charon.dev",
       "--charon_port=5609",
-      "--redis_host=vulgate-cache",
+      "--redis_host=cache",
       "--redis_port=6379"
     ],
     "portMappings": [
