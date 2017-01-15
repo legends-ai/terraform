@@ -31,7 +31,7 @@ resource "aws_elb" "alexandria" {
     "${aws_subnet.main.id}",
   ]
 
-  security_group_ids = [
+  security_groups = [
     "${aws_security_group.ecs.id}"
   ]
 
@@ -99,7 +99,7 @@ resource "aws_elb" "charon" {
     "${aws_subnet.main.id}",
   ]
 
-  security_group_ids = [
+  security_groups = [
     "${aws_security_group.ecs.id}"
   ]
 
@@ -159,7 +159,7 @@ resource "aws_elb" "helios" {
     "${aws_subnet.main.id}",
   ]
 
-  security_group_ids = [
+  security_groups = [
     "${aws_security_group.ecs.id}"
   ]
 
@@ -216,7 +216,7 @@ resource "aws_elb" "legends-ai" {
     "${aws_subnet.main.id}",
   ]
 
-  security_group_ids = [
+  security_groups = [
     "${aws_security_group.ecs.id}"
   ]
 
@@ -264,7 +264,7 @@ resource "aws_elb" "lucinda" {
     "${aws_subnet.main.id}",
   ]
 
-  security_group_ids = [
+  security_groups = [
     "${aws_security_group.ecs.id}"
   ]
 
@@ -324,7 +324,7 @@ resource "aws_elb" "luna" {
     "${aws_subnet.main.id}",
   ]
 
-  security_group_ids = [
+  security_groups = [
     "${aws_security_group.ecs.id}"
   ]
 
@@ -397,7 +397,7 @@ resource "aws_elb" "vulgate" {
     "${aws_subnet.main.id}",
   ]
 
-  security_group_ids = [
+  security_groups = [
     "${aws_security_group.ecs.id}"
   ]
 
