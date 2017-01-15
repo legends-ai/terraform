@@ -92,10 +92,13 @@ variable "bastion_instance_type" {
   default = "t2.nano"
 }
 
-variable "allowed_cidr_blocks"{
+variable "allowed_cidr_blocks" {
   default = "0.0.0.0/0"
 }
 
-variable "internal_cidr_blocks"{
+variable "internal_cidr_blocks" {
   default = "0.0.0.0/0"
 }
+
+variable "cloudflare_email" {}
+variable "cloudflare_token" {}

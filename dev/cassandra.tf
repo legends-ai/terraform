@@ -53,7 +53,6 @@ resource "aws_ebs_volume" "cassandra_0" {
   }
 }
 
-
 resource "aws_eip" "cassandra_0" {
   instance = "${aws_instance.cassandra_0.id}"
   vpc      = true
