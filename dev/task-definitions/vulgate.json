@@ -1,7 +1,7 @@
 [
   {
     "name": "vulgate",
-    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/nova:latest",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/vulgate:latest",
     "cpu": 512,
     "memory": 512,
     "essential": true,
