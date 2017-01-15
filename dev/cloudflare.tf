@@ -6,7 +6,7 @@ provider "cloudflare" {
 # Create a record
 resource "cloudflare_record" "bastion" {
   domain = "asuna.io"
-  name = "bastion.dev"
-  value = "${aws_eip.bastion.public_ip}"
-  type = "A"
+  name   = "bastion.dev"
+  value  = "${aws_eip.bastion.public_ip}"
+  type   = "A"
 }
