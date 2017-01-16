@@ -4,11 +4,11 @@
     {
       "Action": "sts:AssumeRole",
       "Principal": {
-        "AWS": "464622532012",
-        "Condition": {
-          "StringEquals": {
-            "sts:ExternalId": "${dd_external_id}"
-          }
+        "AWS": "464622532012"
+      },
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "${dd_external_id}"
         }
       },
       "Effect": "Allow"
