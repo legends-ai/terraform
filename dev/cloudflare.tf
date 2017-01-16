@@ -3,10 +3,23 @@ provider "cloudflare" {
   token = "${var.cloudflare_token}"
 }
 
-# Create a record
 resource "cloudflare_record" "bastion" {
   domain = "asuna.io"
   name   = "bastion.dev"
   value  = "${aws_eip.bastion.public_ip}"
   type   = "A"
+}
+
+resource "cloudflare_record" "legends-ai" {
+  domain = "asuna.io"
+  name   = "gt40.dev"
+  value  = "${aws_elb.legends-ai.dns_name}"
+  type   = "CNAME"
+}
+
+resource "cloudflare_record" "helios" {
+  domain = "asuna.io"
+  name   = "helios.dev"
+  value  = "${aws_elb.helios.dns_name}"
+  type   = "CNAME"
 }
