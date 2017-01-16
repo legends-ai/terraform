@@ -96,3 +96,5 @@ variable "internal_cidr_blocks" {
 variable "cloudflare_email" {}
 
 variable "cloudflare_token" {}
+
+variable "dd_api_key" {}
