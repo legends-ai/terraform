@@ -175,7 +175,7 @@ resource "aws_elb" "helios" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "TCP:7922/health"
+    target              = "HTTP:7922/health"
     interval            = 30
   }
 
