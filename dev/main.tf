@@ -87,6 +87,7 @@ resource "aws_instance" "ecs" {
   ami                         = "${lookup(var.amis, var.region)}"
   key_name                    = "${aws_key_pair.user.key_name}"
   subnet_id                   = "${aws_subnet.main.id}"
+  iam_instance_profile        = "${aws_iam_instance_profile.ecs.name}"
   vpc_security_group_ids      = ["${aws_security_group.ecs.id}"]
   ebs_optimized               = true
   associate_public_ip_address = true
