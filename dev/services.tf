@@ -18,36 +18,27 @@ resource "aws_ecs_service" "alexandria" {
   depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
-    elb_name       = "${aws_elb.alexandria.id}"
-    container_name = "alexandria"
-    container_port = 22045
+    container_name   = "alexandria"
+    container_port   = 22045
+    target_group_arn = "${aws_alb.alexandria.arn}"
   }
 }
 
-resource "aws_elb" "alexandria" {
-  name = "alexandria-elb"
+resource "aws_alb" "alexandria" {
+  name         = "alexandria-alb"
+  internal     = true
+  idle_timeout = 60
+
+  security_groups = [
+    "${aws_security_group.ecs.id}",
+  ]
 
   subnets = [
     "${aws_subnet.main.id}",
   ]
 
-  security_groups = [
-    "${aws_security_group.ecs.id}"
-  ]
-
-  listener {
-    instance_port     = 22045
-    instance_protocol = "tcp"
-    lb_port           = 22045
-    lb_protocol       = "tcp"
-  }
-
-  idle_timeout                = 60
-  connection_draining         = true
-  connection_draining_timeout = 300
-
   tags {
-    Name = "alexandria-elb"
+    Name = "alexandria-alb"
   }
 }
 
@@ -57,8 +48,8 @@ resource "aws_route53_record" "alexandria" {
   type    = "A"
 
   alias = {
-    name                   = "${aws_elb.alexandria.dns_name}"
-    zone_id                = "${aws_elb.alexandria.zone_id}"
+    name                   = "${aws_alb.alexandria.dns_name}"
+    zone_id                = "${aws_alb.alexandria.zone_id}"
     evaluate_target_health = false
   }
 }
@@ -86,36 +77,27 @@ resource "aws_ecs_service" "charon" {
   depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
-    elb_name       = "${aws_elb.charon.id}"
-    container_name = "charon"
-    container_port = 5609
+    container_name   = "charon"
+    container_port   = 5609
+    target_group_arn = "${aws_alb.charon.arn}"
   }
 }
 
-resource "aws_elb" "charon" {
-  name = "charon-elb"
+resource "aws_alb" "charon" {
+  name         = "charon-alb"
+  internal     = true
+  idle_timeout = 60
+
+  security_groups = [
+    "${aws_security_group.ecs.id}",
+  ]
 
   subnets = [
     "${aws_subnet.main.id}",
   ]
 
-  security_groups = [
-    "${aws_security_group.ecs.id}"
-  ]
-
-  listener {
-    instance_port     = 5609
-    instance_protocol = "tcp"
-    lb_port           = 5609
-    lb_protocol       = "tcp"
-  }
-
-  idle_timeout                = 60
-  connection_draining         = true
-  connection_draining_timeout = 300
-
   tags {
-    Name = "charon-elb"
+    Name = "charon-alb"
   }
 }
 
@@ -125,8 +107,8 @@ resource "aws_route53_record" "charon" {
   type    = "A"
 
   alias = {
-    name                   = "${aws_elb.charon.dns_name}"
-    zone_id                = "${aws_elb.charon.zone_id}"
+    name                   = "${aws_alb.charon.dns_name}"
+    zone_id                = "${aws_alb.charon.zone_id}"
     evaluate_target_health = false
   }
 }
@@ -146,45 +128,27 @@ resource "aws_ecs_service" "helios" {
   depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
-    elb_name       = "${aws_elb.helios.id}"
-    container_name = "helios"
-    container_port = 7921
+    container_name   = "helios"
+    container_port   = 7921
+    target_group_arn = "${aws_alb.helios.arn}"
   }
 }
 
-resource "aws_elb" "helios" {
-  name = "helios-elb"
+resource "aws_alb" "helios" {
+  name         = "helios-alb"
+  internal     = true
+  idle_timeout = 60
+
+  security_groups = [
+    "${aws_security_group.ecs.id}",
+  ]
 
   subnets = [
     "${aws_subnet.main.id}",
   ]
 
-  security_groups = [
-    "${aws_security_group.ecs.id}"
-  ]
-
-  listener {
-    instance_port      = 7921
-    instance_protocol  = "tcp"
-    lb_port            = 443
-    lb_protocol        = "tcp"
-    ssl_certificate_id = "${var.asunaio_ssl_certificate_arn}"
-  }
-
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 3
-    target              = "HTTP:7922/health"
-    interval            = 30
-  }
-
-  idle_timeout                = 60
-  connection_draining         = true
-  connection_draining_timeout = 300
-
   tags {
-    Name = "helios-elb"
+    Name = "helios-alb"
   }
 }
 
@@ -203,36 +167,31 @@ resource "aws_ecs_service" "legends-ai" {
   depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
-    elb_name       = "${aws_elb.legends-ai.id}"
-    container_name = "legends-ai"
-    container_port = 7448
+    container_name   = "legends-ai"
+    container_port   = 7448
+    target_group_arn = "${aws_alb.legends-ai.arn}"
   }
 }
 
-resource "aws_elb" "legends-ai" {
-  name = "legends-ai-elb"
+resource "aws_alb" "legends-ai" {
+  name         = "legends-ai-alb"
+  internal     = true
+  idle_timeout = 60
+
+  security_groups = [
+    "${aws_security_group.ecs.id}",
+  ]
 
   subnets = [
     "${aws_subnet.main.id}",
   ]
 
   security_groups = [
-    "${aws_security_group.ecs.id}"
+    "${aws_security_group.ecs.id}",
   ]
 
-  listener {
-    instance_port     = 7448
-    instance_protocol = "tcp"
-    lb_port           = 80
-    lb_protocol       = "tcp"
-  }
-
-  idle_timeout                = 60
-  connection_draining         = true
-  connection_draining_timeout = 300
-
   tags {
-    Name = "legends-ai-elb"
+    Name = "legends-ai-alb"
   }
 }
 
@@ -251,36 +210,27 @@ resource "aws_ecs_service" "lucinda" {
   depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
-    elb_name       = "${aws_elb.lucinda.id}"
-    container_name = "lucinda"
-    container_port = 45045
+    container_name   = "lucinda"
+    container_port   = 45045
+    target_group_arn = "${aws_alb.lucinda.arn}"
   }
 }
 
-resource "aws_elb" "lucinda" {
-  name = "lucinda-elb"
+resource "aws_alb" "lucinda" {
+  name         = "lucinda-alb"
+  internal     = true
+  idle_timeout = 60
+
+  security_groups = [
+    "${aws_security_group.ecs.id}",
+  ]
 
   subnets = [
     "${aws_subnet.main.id}",
   ]
 
-  security_groups = [
-    "${aws_security_group.ecs.id}"
-  ]
-
-  listener {
-    instance_port     = 45045
-    instance_protocol = "tcp"
-    lb_port           = 45045
-    lb_protocol       = "tcp"
-  }
-
-  idle_timeout                = 60
-  connection_draining         = true
-  connection_draining_timeout = 300
-
   tags {
-    Name = "lucinda-elb"
+    Name = "lucinda-alb"
   }
 }
 
@@ -290,8 +240,8 @@ resource "aws_route53_record" "lucinda" {
   type    = "A"
 
   alias = {
-    name                   = "${aws_elb.lucinda.dns_name}"
-    zone_id                = "${aws_elb.lucinda.zone_id}"
+    name                   = "${aws_alb.lucinda.dns_name}"
+    zone_id                = "${aws_alb.lucinda.zone_id}"
     evaluate_target_health = false
   }
 }
@@ -311,36 +261,27 @@ resource "aws_ecs_service" "luna" {
   depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
-    elb_name       = "${aws_elb.luna.id}"
-    container_name = "luna"
-    container_port = 2389
+    container_name   = "luna"
+    container_port   = 2389
+    target_group_arn = "${aws_alb.luna.arn}"
   }
 }
 
-resource "aws_elb" "luna" {
-  name = "luna-elb"
+resource "aws_alb" "luna" {
+  name         = "luna-alb"
+  internal     = true
+  idle_timeout = 60
+
+  security_groups = [
+    "${aws_security_group.ecs.id}",
+  ]
 
   subnets = [
     "${aws_subnet.main.id}",
   ]
 
-  security_groups = [
-    "${aws_security_group.ecs.id}"
-  ]
-
-  listener {
-    instance_port     = 2389
-    instance_protocol = "tcp"
-    lb_port           = 2389
-    lb_protocol       = "tcp"
-  }
-
-  idle_timeout                = 60
-  connection_draining         = true
-  connection_draining_timeout = 300
-
   tags {
-    Name = "luna-elb"
+    Name = "luna-alb"
   }
 }
 
@@ -350,8 +291,8 @@ resource "aws_route53_record" "luna" {
   type    = "A"
 
   alias = {
-    name                   = "${aws_elb.luna.dns_name}"
-    zone_id                = "${aws_elb.luna.zone_id}"
+    name                   = "${aws_alb.luna.dns_name}"
+    zone_id                = "${aws_alb.luna.zone_id}"
     evaluate_target_health = false
   }
 }
@@ -384,36 +325,27 @@ resource "aws_ecs_service" "vulgate" {
   depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
 
   load_balancer {
-    elb_name       = "${aws_elb.vulgate.id}"
-    container_name = "vulgate"
-    container_port = 6205
+    container_name   = "vulgate"
+    container_port   = 6205
+    target_group_arn = "${aws_alb.vulgate.arn}"
   }
 }
 
-resource "aws_elb" "vulgate" {
-  name = "vulgate-elb"
+resource "aws_alb" "vulgate" {
+  name         = "vulgate-alb"
+  internal     = true
+  idle_timeout = 60
+
+  security_groups = [
+    "${aws_security_group.ecs.id}",
+  ]
 
   subnets = [
     "${aws_subnet.main.id}",
   ]
 
-  security_groups = [
-    "${aws_security_group.ecs.id}"
-  ]
-
-  listener {
-    instance_port     = 6205
-    instance_protocol = "tcp"
-    lb_port           = 6205
-    lb_protocol       = "tcp"
-  }
-
-  idle_timeout                = 60
-  connection_draining         = true
-  connection_draining_timeout = 300
-
   tags {
-    Name = "vulgate-elb"
+    Name = "vulgate-alb"
   }
 }
 
@@ -423,8 +355,8 @@ resource "aws_route53_record" "vulgate" {
   type    = "A"
 
   alias = {
-    name                   = "${aws_elb.vulgate.dns_name}"
-    zone_id                = "${aws_elb.vulgate.zone_id}"
+    name                   = "${aws_alb.vulgate.dns_name}"
+    zone_id                = "${aws_alb.vulgate.zone_id}"
     evaluate_target_health = false
   }
 }
