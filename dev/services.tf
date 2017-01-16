@@ -212,7 +212,7 @@ resource "aws_alb_listener" "helios" {
   load_balancer_arn = "${aws_alb.helios.arn}"
   port              = 443
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  ssl_policy        = "ELBSecurityPolicy-2015-05"
   certificate_arn   = "${var.asunaio_ssl_certificate_arn}"
 
   default_action {
@@ -276,7 +276,7 @@ resource "aws_alb_listener" "legends-ai" {
   load_balancer_arn = "${aws_alb.legends-ai.arn}"
   port              = 443
   protocol          = "HTTPS"
-  ssl_policy        = "ELBSecurityPolicy-2016-08"
+  ssl_policy        = "ELBSecurityPolicy-2015-05"
   certificate_arn   = "${var.asunaio_ssl_certificate_arn}"
 
   default_action {
