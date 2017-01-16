@@ -37,9 +37,9 @@ resource "aws_elb" "alexandria" {
 
   listener {
     instance_port     = 22045
-    instance_protocol = "http"
+    instance_protocol = "tcp"
     lb_port           = 22045
-    lb_protocol       = "http"
+    lb_protocol       = "tcp"
   }
 
   idle_timeout                = 60
@@ -105,9 +105,9 @@ resource "aws_elb" "charon" {
 
   listener {
     instance_port     = 5609
-    instance_protocol = "http"
+    instance_protocol = "tcp"
     lb_port           = 5609
-    lb_protocol       = "http"
+    lb_protocol       = "tcp"
   }
 
   idle_timeout                = 60
@@ -165,7 +165,7 @@ resource "aws_elb" "helios" {
 
   listener {
     instance_port      = 7921
-    instance_protocol  = "http"
+    instance_protocol  = "tcp"
     lb_port            = 443
     lb_protocol        = "https"
     ssl_certificate_id = "${var.asunaio_ssl_certificate_arn}"
@@ -222,9 +222,9 @@ resource "aws_elb" "legends-ai" {
 
   listener {
     instance_port     = 7448
-    instance_protocol = "http"
+    instance_protocol = "tcp"
     lb_port           = 80
-    lb_protocol       = "http"
+    lb_protocol       = "tcp"
   }
 
   idle_timeout                = 60
@@ -270,9 +270,9 @@ resource "aws_elb" "lucinda" {
 
   listener {
     instance_port     = 45045
-    instance_protocol = "http"
+    instance_protocol = "tcp"
     lb_port           = 45045
-    lb_protocol       = "http"
+    lb_protocol       = "tcp"
   }
 
   idle_timeout                = 60
@@ -330,9 +330,9 @@ resource "aws_elb" "luna" {
 
   listener {
     instance_port     = 2389
-    instance_protocol = "http"
+    instance_protocol = "tcp"
     lb_port           = 2389
-    lb_protocol       = "http"
+    lb_protocol       = "tcp"
   }
 
   idle_timeout                = 60
@@ -403,9 +403,9 @@ resource "aws_elb" "vulgate" {
 
   listener {
     instance_port     = 6205
-    instance_protocol = "http"
+    instance_protocol = "tcp"
     lb_port           = 6205
-    lb_protocol       = "http"
+    lb_protocol       = "tcp"
   }
 
   idle_timeout                = 60
