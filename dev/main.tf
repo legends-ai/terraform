@@ -93,8 +93,6 @@ resource "aws_instance" "ecs" {
   associate_public_ip_address = true
   user_data                   = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs_cluster_name}' > /etc/ecs/ecs.config"
 
-  # TODO(igm): forces new resource
-  # associate_public_ip_address = false
   tags {
     Name = "dev_ecs"
   }
