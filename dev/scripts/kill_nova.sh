@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-
 TASKS=`aws ecs list-tasks --region=us-east-1 --cluster=dev | jq '.taskArns | join(" ")' | sed -e 's/^"//' -e 's/"$//'`
 echo $TASKS
 

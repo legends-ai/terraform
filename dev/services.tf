@@ -505,7 +505,7 @@ resource "aws_alb" "vulgate" {
   idle_timeout = 60
 
   security_groups = [
-    "${aws_security_group.ecs.id}",
+    "${aws_security_group.load_balancers.id}",
   ]
 
   subnets = [
