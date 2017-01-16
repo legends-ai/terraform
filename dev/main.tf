@@ -107,7 +107,7 @@ resource "aws_instance" "ecs" {
 }
 
 resource "aws_eip" "ecs" {
-  instance = "${aws_instance.cassandra_0.id}"
+  instance = "${aws_instance.ecs.id}"
   vpc      = true
 }
 
