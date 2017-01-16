@@ -24,7 +24,7 @@ resource "aws_ecs_service" "alexandria" {
   load_balancer {
     container_name   = "alexandria"
     container_port   = 22045
-    target_group_arn = "${aws_alb.alexandria.arn}"
+    target_group_arn = "${aws_alb_target_group.alexandria.arn}"
   }
 }
 
@@ -106,7 +106,7 @@ resource "aws_ecs_service" "charon" {
   load_balancer {
     container_name   = "charon"
     container_port   = 5609
-    target_group_arn = "${aws_alb.charon.arn}"
+    target_group_arn = "${aws_alb_target_group.charon.arn}"
   }
 }
 
@@ -180,7 +180,7 @@ resource "aws_ecs_service" "helios" {
   load_balancer {
     container_name   = "helios"
     container_port   = 7921
-    target_group_arn = "${aws_alb.helios.arn}"
+    target_group_arn = "${aws_alb_target_group.helios.arn}"
   }
 }
 
@@ -254,7 +254,7 @@ resource "aws_ecs_service" "legends-ai" {
   load_balancer {
     container_name   = "legends-ai"
     container_port   = 7448
-    target_group_arn = "${aws_alb.legends-ai.arn}"
+    target_group_arn = "${aws_alb_target_group.legends-ai.arn}"
   }
 }
 
@@ -322,7 +322,7 @@ resource "aws_ecs_service" "lucinda" {
   load_balancer {
     container_name   = "lucinda"
     container_port   = 45045
-    target_group_arn = "${aws_alb.lucinda.arn}"
+    target_group_arn = "${aws_alb_target_group.lucinda.arn}"
   }
 }
 
@@ -396,7 +396,7 @@ resource "aws_ecs_service" "luna" {
   load_balancer {
     container_name   = "luna"
     container_port   = 2389
-    target_group_arn = "${aws_alb.luna.arn}"
+    target_group_arn = "${aws_alb_target_group.luna.arn}"
   }
 }
 
@@ -483,7 +483,7 @@ resource "aws_ecs_service" "vulgate" {
   load_balancer {
     container_name   = "vulgate"
     container_port   = 6205
-    target_group_arn = "${aws_alb.vulgate.arn}"
+    target_group_arn = "${aws_alb_target_group.vulgate.arn}"
   }
 }
 
@@ -505,7 +505,7 @@ resource "aws_alb" "vulgate" {
   idle_timeout = 60
 
   security_groups = [
-    "${aws_security_group.load_balancers.id}",
+    "${aws_security_group.ecs.id}",
   ]
 
   subnets = [
