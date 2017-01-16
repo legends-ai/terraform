@@ -9,6 +9,21 @@ data "template_file" "dd-agent_task_definition" {
 resource "aws_ecs_task_definition" "dd-agent" {
   family                = "dd-agent"
   container_definitions = "${data.template_file.dd-agent_task_definition.rendered}"
+
+  volume {
+    name      = "docker_sock"
+    host_path = "/var/run/docker.sock"
+  }
+
+  volume {
+    name      = "proc"
+    host_path = "/proc/"
+  }
+
+  volume {
+    name      = "cgroup"
+    host_path = "/cgroup/"
+  }
 }
 
 resource "aws_ecs_service" "dd-agent" {

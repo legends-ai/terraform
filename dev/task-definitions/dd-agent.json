@@ -1,5 +1,4 @@
-{
-  "containerDefinitions": [
+[
     {
       "name": "dd-agent",
       "image": "datadog/docker-dd-agent:latest",
@@ -29,26 +28,4 @@
         }
       ]
     }
-  ],
-  "volumes": [
-    {
-      "host": {
-        "sourcePath": "/var/run/docker.sock"
-      },
-      "name": "docker_sock"
-    },
-    {
-      "host": {
-        "sourcePath": "/proc/"
-      },
-      "name": "proc"
-    },
-    {
-      "host": {
-        "sourcePath": "/cgroup/"
-      },
-      "name": "cgroup"
-    }
-  ],
-  "family": "dd-agent-task"
-}
+]
