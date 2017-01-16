@@ -167,7 +167,7 @@ resource "aws_elb" "helios" {
     instance_port      = 7921
     instance_protocol  = "tcp"
     lb_port            = 443
-    lb_protocol        = "https"
+    lb_protocol        = "tcp"
     ssl_certificate_id = "${var.asunaio_ssl_certificate_arn}"
   }
 
@@ -175,7 +175,7 @@ resource "aws_elb" "helios" {
     healthy_threshold   = 2
     unhealthy_threshold = 2
     timeout             = 3
-    target              = "HTTPS:7922/health"
+    target              = "TCP:7922/health"
     interval            = 30
   }
 
