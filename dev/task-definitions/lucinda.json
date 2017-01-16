@@ -12,10 +12,10 @@
       "java",
       "-jar",
       "/app/lucinda-assembly.jar",
-      "--alexandria_host=muramasa.dev.asuna.io",
+      "--alexandria_host=muramasa.dev",
       "--alexandria_port=22045",
       "--redis_host=cache",
-      "--vulgate_host=muramasa.dev.asuna.io",
+      "--vulgate_host=muramasa.dev",
       "--vulgate_port=6205"
     ],
     "portMappings": [

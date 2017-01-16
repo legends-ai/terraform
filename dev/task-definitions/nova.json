@@ -16,11 +16,11 @@
       "--redis_port=6379",
       "--ingest_max_interval=60",
       "--ingest_max_batch_size=60",
-      "--alexandria_host=muramasa.dev.asuna.io",
+      "--alexandria_host=muramasa.dev",
       "--alexandria_port=22045",
-      "--charon_host=muramasa.dev.asuna.io",
+      "--charon_host=muramasa.dev",
       "--charon_port=5609",
-      "--luna_host=muramasa.dev.asuna.io",
+      "--luna_host=muramasa.dev",
       "--luna_port=2389"
     ],
     "logConfiguration": {

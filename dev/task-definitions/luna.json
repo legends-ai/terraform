@@ -9,9 +9,9 @@
       "java",
       "-jar",
       "/app/luna-assembly.jar",
-      "--alexandria_host=muramasa.dev.asuna.io",
+      "--alexandria_host=muramasa.dev",
       "--alexandria_port=22045",
-      "--charon_host=muramasa.dev.asuna.io",
+      "--charon_host=muramasa.dev",
       "--charon_port=5609"
     ],
     "portMappings": [

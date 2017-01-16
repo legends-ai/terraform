@@ -149,3 +149,11 @@ resource "aws_cloudwatch_log_group" "asuna" {
   # TODO(igm): interpolate
   name = "asuna"
 }
+
+resource "aws_route53_record" "ecs" {
+  zone_id = "${aws_route53_zone.main.zone_id}"
+  name    = "muramasa.${aws_route53_zone.main.name}"
+  type    = "A"
+  ttl     = "300"
+  records = ["${aws_eip.ecs.private_ip}"]
+}

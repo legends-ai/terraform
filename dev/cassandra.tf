@@ -3,7 +3,7 @@ resource "aws_instance" "cassandra_0" {
   ami                    = "${lookup(var.cassandra_amis, var.region)}"
   key_name               = "${aws_key_pair.user.key_name}"
   subnet_id              = "${aws_subnet.main.id}"
-  vpc_security_group_ids = ["${aws_security_group.ecs.id}"]
+  vpc_security_group_ids = ["${aws_security_group.cassandra.id}"]
   ebs_optimized          = true
 
   # TODO(igm): forces new resource
@@ -18,6 +18,26 @@ resource "aws_instance" "cassandra_0" {
     volume_type           = "gp2"
     volume_size           = "20"  # GB
     delete_on_termination = true
+  }
+}
+
+resource "aws_security_group" "cassandra" {
+  name        = "cassandra"
+  description = "Allows all traffic"
+  vpc_id      = "${aws_vpc.main.id}"
+
+  ingress {
+    from_port   = 9042
+    to_port     = 9042
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
