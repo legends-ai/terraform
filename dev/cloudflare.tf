@@ -10,16 +10,9 @@ resource "cloudflare_record" "bastion" {
   type   = "A"
 }
 
-resource "cloudflare_record" "legends-ai" {
+resource "cloudflare_record" "dev" {
   domain = "asuna.io"
-  name   = "gt40.dev"
-  value  = "${aws_alb.legends-ai.dns_name}"
-  type   = "CNAME"
-}
-
-resource "cloudflare_record" "helios" {
-  domain = "asuna.io"
-  name   = "helios.dev"
-  value  = "${aws_alb.helios.dns_name}"
-  type   = "CNAME"
+  name   = "muramasa.dev"
+  value  = "${aws_eip.ecs.public_ip}"
+  type   = "A"
 }

@@ -54,6 +54,22 @@ resource "aws_security_group" "ecs" {
   description = "Allows all traffic"
   vpc_id      = "${aws_vpc.main.id}"
 
+  // Legends.AI
+  ingress {
+    from_port   = 7448
+    to_port     = 7448
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  // Helios
+  ingress {
+    from_port   = 7921
+    to_port     = 7921
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -66,26 +82,32 @@ resource "aws_ecs_cluster" "main" {
   name = "${var.ecs_cluster_name}"
 }
 
-resource "aws_autoscaling_group" "ecs-cluster" {
-  availability_zones   = ["${var.availability_zone}"]
-  name                 = "ECS ${var.ecs_cluster_name}"
-  min_size             = "${var.autoscale_min}"
-  max_size             = "${var.autoscale_max}"
-  desired_capacity     = "${var.autoscale_desired}"
-  health_check_type    = "EC2"
-  launch_configuration = "${aws_launch_configuration.ecs.name}"
-  vpc_zone_identifier  = ["${aws_subnet.main.id}"]
-}
-
-resource "aws_launch_configuration" "ecs" {
-  name                        = "ECS ${var.ecs_cluster_name}"
-  image_id                    = "${lookup(var.amis, var.region)}"
-  instance_type               = "${var.instance_type}"
-  security_groups             = ["${aws_security_group.ecs.id}"]
-  iam_instance_profile        = "${aws_iam_instance_profile.ecs.name}"
+resource "aws_instance" "ecs" {
+  instance_type               = "m4.xlarge"
+  ami                         = "${lookup(var.amis, var.region)}"
   key_name                    = "${aws_key_pair.user.key_name}"
+  subnet_id                   = "${aws_subnet.main.id}"
+  vpc_security_group_ids      = ["${aws_security_group.ecs.id}"]
+  ebs_optimized               = true
   associate_public_ip_address = true
   user_data                   = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs_cluster_name}' > /etc/ecs/ecs.config"
+
+  # TODO(igm): forces new resource
+  # associate_public_ip_address = false
+  tags {
+    Name = "dev_ecs"
+  }
+
+  root_block_device {
+    volume_type           = "gp2"
+    volume_size           = "20"  # GB
+    delete_on_termination = true
+  }
+}
+
+resource "aws_eip" "ecs" {
+  instance = "${aws_instance.cassandra_0.id}"
+  vpc      = true
 }
 
 resource "aws_iam_role" "ecs_host_role" {
