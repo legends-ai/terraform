@@ -98,3 +98,4 @@ variable "cloudflare_email" {}
 variable "cloudflare_token" {}
 
 variable "dd_api_key" {}
+variable "dd_external_id" {}

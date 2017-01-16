@@ -1,3 +1,22 @@
+data "template_file" "datadog_role" {
+  template = "${file("policies/datadog-role.json")}"
+
+  vars {
+    dd_external_id = "${var.dd_external_id}"
+  }
+}
+
+resource "aws_iam_role" "datadog" {
+  name               = "datadog_role"
+  assume_role_policy = "${data.template_file.datadog_role.rendered}"
+}
+
+resource "aws_iam_role_policy" "datadog" {
+  name   = "datadog_role_policy"
+  policy = "${file("policies/datadog-role-policy.json")}"
+  role   = "${aws_iam_role.datadog.id}"
+}
+
 data "template_file" "dd-agent_task_definition" {
   template = "${file("task-definitions/dd-agent.json")}"
 
