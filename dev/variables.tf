@@ -12,6 +12,11 @@ variable "availability_zone" {
   default     = "us-east-1a"
 }
 
+variable "availability_zone_2" {
+  description = "The other availability zone"
+  default     = "us-east-1b"
+}
+
 variable "ecs_cluster_name" {
   description = "The name of the Amazon ECS cluster."
   default     = "dev"

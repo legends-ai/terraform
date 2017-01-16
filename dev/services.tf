@@ -47,6 +47,7 @@ resource "aws_alb" "alexandria" {
 
   subnets = [
     "${aws_subnet.main.id}",
+    "${aws_subnet.main_2.id}",
   ]
 
   tags {
@@ -124,6 +125,7 @@ resource "aws_alb" "charon" {
 
   subnets = [
     "${aws_subnet.main.id}",
+    "${aws_subnet.main_2.id}",
   ]
 
   tags {
@@ -181,6 +183,7 @@ resource "aws_alb" "helios" {
 
   subnets = [
     "${aws_subnet.main.id}",
+    "${aws_subnet.main_2.id}",
   ]
 
   tags {
@@ -250,6 +253,7 @@ resource "aws_alb" "legends-ai" {
 
   subnets = [
     "${aws_subnet.main.id}",
+    "${aws_subnet.main_2.id}",
   ]
 
   security_groups = [
@@ -325,6 +329,7 @@ resource "aws_alb" "lucinda" {
 
   subnets = [
     "${aws_subnet.main.id}",
+    "${aws_subnet.main_2.id}",
   ]
 
   tags {
@@ -394,6 +399,7 @@ resource "aws_alb" "luna" {
 
   subnets = [
     "${aws_subnet.main.id}",
+    "${aws_subnet.main_2.id}",
   ]
 
   tags {
@@ -476,6 +482,7 @@ resource "aws_alb" "vulgate" {
 
   subnets = [
     "${aws_subnet.main.id}",
+    "${aws_subnet.main_2.id}",
   ]
 
   tags {
