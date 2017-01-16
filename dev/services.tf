@@ -15,7 +15,11 @@ resource "aws_ecs_service" "alexandria" {
   task_definition = "${aws_ecs_task_definition.alexandria.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service_role.arn}"
-  depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  depends_on = [
+    "aws_iam_role_policy.ecs_service_role_policy",
+    "aws_alb_listener.alexandria",
+  ]
 
   load_balancer {
     container_name   = "alexandria"
@@ -93,7 +97,11 @@ resource "aws_ecs_service" "charon" {
   task_definition = "${aws_ecs_task_definition.charon.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service_role.arn}"
-  depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  depends_on = [
+    "aws_iam_role_policy.ecs_service_role_policy",
+    "aws_alb_listener.charon",
+  ]
 
   load_balancer {
     container_name   = "charon"
@@ -163,7 +171,11 @@ resource "aws_ecs_service" "helios" {
   task_definition = "${aws_ecs_task_definition.helios.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service_role.arn}"
-  depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  depends_on = [
+    "aws_iam_role_policy.ecs_service_role_policy",
+    "aws_alb_listener.helios",
+  ]
 
   load_balancer {
     container_name   = "helios"
@@ -233,7 +245,11 @@ resource "aws_ecs_service" "legends-ai" {
   task_definition = "${aws_ecs_task_definition.legends-ai.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service_role.arn}"
-  depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  depends_on = [
+    "aws_iam_role_policy.ecs_service_role_policy",
+    "aws_alb_listener.legends-ai",
+  ]
 
   load_balancer {
     container_name   = "legends-ai"
@@ -297,7 +313,11 @@ resource "aws_ecs_service" "lucinda" {
   task_definition = "${aws_ecs_task_definition.lucinda.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service_role.arn}"
-  depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  depends_on = [
+    "aws_iam_role_policy.ecs_service_role_policy",
+    "aws_alb_listener.lucinda",
+  ]
 
   load_balancer {
     container_name   = "lucinda"
@@ -367,7 +387,11 @@ resource "aws_ecs_service" "luna" {
   task_definition = "${aws_ecs_task_definition.luna.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service_role.arn}"
-  depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  depends_on = [
+    "aws_iam_role_policy.ecs_service_role_policy",
+    "aws_alb_listener.luna",
+  ]
 
   load_balancer {
     container_name   = "luna"
@@ -450,7 +474,11 @@ resource "aws_ecs_service" "vulgate" {
   task_definition = "${aws_ecs_task_definition.vulgate.arn}"
   desired_count   = 1
   iam_role        = "${aws_iam_role.ecs_service_role.arn}"
-  depends_on      = ["aws_iam_role_policy.ecs_service_role_policy"]
+
+  depends_on = [
+    "aws_iam_role_policy.ecs_service_role_policy",
+    "aws_alb_listener.vulgate",
+  ]
 
   load_balancer {
     container_name   = "vulgate"
