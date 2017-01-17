@@ -11,9 +11,9 @@ resource "aws_instance" "cassandra_0" {
 
   # associate_public_ip_address = false
 
-  tags {
+  tags ({
     Name = "cassandra_0"
-  }
+  })
   root_block_device {
     volume_type           = "gp2"
     volume_size           = "20"  # GB
@@ -30,7 +30,7 @@ resource "aws_security_group" "cassandra" {
     from_port   = 9042
     to_port     = 9042
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["10.0.0.0/16"]
   }
 
   egress {
