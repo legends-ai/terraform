@@ -38,9 +38,9 @@ resource "aws_security_group" "bastion" {
   }
 
   egress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "all"
     cidr_blocks = ["${split(",", var.internal_cidr_blocks)}"]
   }
 
