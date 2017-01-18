@@ -16,7 +16,10 @@
       "--alexandria_port=22045",
       "--redis_host=cache",
       "--vulgate_host=muramasa.dev",
-      "--vulgate_port=6205"
+      "--vulgate_port=6205",
+      "--stats_prefix=dev.lucinda",
+      "--statsd_host=muramasa.dev",
+      "--statsd_port=8125"
     ],
     "portMappings": [
       {

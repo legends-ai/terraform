@@ -12,7 +12,10 @@
       "--cassandra_user=cassandra",
       "--cassandra_pass=bitnami",
       "--keyspace=alexandria_dev",
-      "--cassandra_hosts=node-0.cassandra.dev"
+      "--cassandra_hosts=node-0.cassandra.dev",
+      "--stats_prefix=dev.alexandria",
+      "--statsd_host=muramasa.dev",
+      "--statsd_port=8125"
     ],
     "portMappings": [
       {

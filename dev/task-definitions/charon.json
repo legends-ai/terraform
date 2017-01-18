@@ -12,7 +12,10 @@
       "--riot_api_key=${riot_api_key}",
       "--req_per_10min=180000",
       "--req_per_10sec=3000",
-      "--capacity_multiplier=0.8"
+      "--capacity_multiplier=0.8",
+      "--stats_prefix=dev.charon",
+      "--statsd_host=muramasa.dev",
+      "--statsd_port=8125"
     ],
     "portMappings": [
       {

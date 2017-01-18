@@ -12,7 +12,10 @@
       "--alexandria_host=muramasa.dev",
       "--alexandria_port=22045",
       "--charon_host=muramasa.dev",
-      "--charon_port=5609"
+      "--charon_port=5609",
+      "--stats_prefix=dev.luna",
+      "--statsd_host=muramasa.dev",
+      "--statsd_port=8125"
     ],
     "portMappings": [
       {
