@@ -21,7 +21,8 @@
       "--charon_host=muramasa.dev",
       "--charon_port=5609",
       "--luna_host=muramasa.dev",
-      "--luna_port=2389"
+      "--luna_port=2389",
+      "--stats_prefix=dev.nova"
     ],
     "logConfiguration": {
       "logDriver": "awslogs",
