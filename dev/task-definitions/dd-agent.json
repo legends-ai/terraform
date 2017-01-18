@@ -21,6 +21,12 @@
           "readOnly": true
         }
       ],
+    "portMappings": [
+      {
+        "containerPort": 8125,
+        "hostPort": 8125
+      }
+    ],
       "environment": [
         {
           "name": "API_KEY",
