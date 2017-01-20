@@ -46,7 +46,7 @@ resource "aws_instance" "ecs" {
   subnet_id                   = "${aws_subnet.main.id}"
   iam_instance_profile        = "${aws_iam_instance_profile.ecs.name}"
   vpc_security_group_ids      = ["${aws_security_group.ecs.id}"]
-  ebs_optimized               = true
+  ebs_optimized               = false
   associate_public_ip_address = true
   user_data                   = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs_cluster_name}' > /etc/ecs/ecs.config"
 
