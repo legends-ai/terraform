@@ -2,7 +2,7 @@
   {
     "name": "legends-ai",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/legends-ai:latest",
-    "cpu": 256,
+    "cpu": 128,
     "memory": 512,
     "essential": true,
     "entryPoint": [

@@ -2,7 +2,7 @@
     {
       "name": "dd-agent",
       "image": "datadog/docker-dd-agent:latest",
-      "cpu": 128,
+      "cpu": 10,
       "memory": 128,
       "essential": true,
       "mountPoints": [
