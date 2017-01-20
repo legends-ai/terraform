@@ -27,11 +27,19 @@
         "hostPort": 8125
       }
     ],
-      "environment": [
+    "environment": [
         {
           "name": "API_KEY",
           "value": "${dd_api_key}"
         }
       ]
+    },
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "dd-agent"
+      }
     }
 ]
