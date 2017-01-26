@@ -27,7 +27,7 @@ variable "amis" {
 
   # TODO: support other regions.
   default = {
-    us-east-1 = "ami-a58760b3"
+    us-east-1 = "ami-d69c74c0"
   }
 }
 
