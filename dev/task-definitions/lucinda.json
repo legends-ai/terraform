@@ -10,6 +10,7 @@
     ],
     "entryPoint": [
       "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
       "-jar",
       "/app/lucinda-assembly.jar",
       "--alexandria_host=muramasa.dev",

@@ -7,6 +7,7 @@
     "essential": true,
     "entryPoint": [
       "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
       "-jar",
       "/app/charon-assembly.jar",
       "--riot_api_key=${riot_api_key}",

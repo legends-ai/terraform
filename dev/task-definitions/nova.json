@@ -10,6 +10,7 @@
     ],
     "entryPoint": [
       "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
       "-jar",
       "/app/nova-assembly.jar",
       "--redis_host=queue",

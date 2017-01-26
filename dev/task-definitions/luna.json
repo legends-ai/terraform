@@ -7,6 +7,7 @@
     "essential": true,
     "entryPoint": [
       "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
       "-jar",
       "/app/luna-assembly.jar",
       "--alexandria_host=muramasa.dev",
