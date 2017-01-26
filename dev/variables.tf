@@ -59,8 +59,8 @@ variable "cassandra_amis" {
   }
 }
 
-variable "instance_type" {
-  default = "m4.xlarge"
+variable "ecs_instance_type" {
+  default = "t2.xlarge"
 }
 
 variable "ssh_pubkey_file" {

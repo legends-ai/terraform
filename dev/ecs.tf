@@ -40,7 +40,7 @@ resource "aws_ecs_cluster" "main" {
 }
 
 resource "aws_instance" "ecs" {
-  instance_type               = "t2.xlarge"
+  instance_type               = "${var.ecs_instance_type}"
   ami                         = "${lookup(var.amis, var.region)}"
   key_name                    = "${aws_key_pair.user.key_name}"
   subnet_id                   = "${aws_subnet.main.id}"
