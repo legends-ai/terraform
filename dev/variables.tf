@@ -65,12 +65,12 @@ variable "ecs_instance_type" {
 
 variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
-  default     = "~/asuna-dev-ecs.pub"
+  default     = "~/asuna-dev.pub"
 }
 
 variable "ssh_privkey_file" {
   description = "Path to an SSH private key"
-  default     = "~/asuna-dev-ecs.pem"
+  default     = "~/asuna-dev.pem"
 }
 
 variable "bastion_amis" {
