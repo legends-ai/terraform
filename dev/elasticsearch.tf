@@ -22,7 +22,7 @@ resource "aws_elasticsearch_domain" "es" {
 CONFIG
 
   cluster_config {
-    instance_type = "t2.micro"
+    instance_type = "t2.micro.elasticsearch"
     instance_count = 1
   }
 
