@@ -6,9 +6,16 @@
     "memory": 512,
     "essential": true,
     "entryPoint": [
-      "./helios",
-      "--lucinda_host=muramasa.dev:45045",
-      "--vulgate_host=muramasa.dev:6205"
+      "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
+      "-jar",
+      "/app/helios-assembly.jar",
+      "--lucinda_host=muramasa.dev",
+      "--lucinda_port=45045",
+      "--luna_host=muramasa.dev",
+      "--luna_port=2389",
+      "--vulgate_host=muramasa.dev",
+      "--vulgate_port=6205"
     ],
     "portMappings": [
       {
