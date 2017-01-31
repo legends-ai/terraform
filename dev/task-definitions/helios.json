@@ -10,6 +10,8 @@
       "-Dlogback.configurationFile=logback.prod.xml",
       "-jar",
       "/app/helios-assembly.jar",
+      "--charon_host=muramasa.dev",
+      "--charon_port=5609",
       "--lucinda_host=muramasa.dev",
       "--lucinda_port=45045",
       "--luna_host=muramasa.dev",
