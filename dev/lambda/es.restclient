@@ -19,3 +19,6 @@ PUT :root/cwl-*
     }
   }
 }
+
+# Delete everything
+DELETE :root/cwl-2017.02.01
