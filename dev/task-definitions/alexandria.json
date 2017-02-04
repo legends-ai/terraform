@@ -3,7 +3,7 @@
     "name": "alexandria",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/alexandria",
     "cpu": 512,
-    "memory": 1024,
+    "memory": 3072,
     "essential": true,
     "entryPoint": [
       "java",
