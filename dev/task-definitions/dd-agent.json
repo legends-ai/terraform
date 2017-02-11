@@ -24,7 +24,8 @@
         "portMappings": [
             {
                 "containerPort": 8125,
-                "hostPort": 8125
+                "hostPort": 8125,
+                "protocol": "udp"
             }
         ],
         "environment": [
