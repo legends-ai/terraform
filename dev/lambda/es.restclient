@@ -1,4 +1,4 @@
-:root = https://search-muramasa-es-zb24ibtmqrp3n5jot4fzgg6ks4.us-east-1.es.amazonaws.com
+:root = https://search-muramasa2-es-ng5ryd7trpah25jtgooxbreoe4.us-east-1.es.amazonaws.com
 
 GET :root
 
@@ -21,4 +21,4 @@ PUT :root/cwl-*
 }
 
 # Delete everything
-DELETE :root/cwl-2017.02.01
+DELETE :root/cwl-2017.02.10
