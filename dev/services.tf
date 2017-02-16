@@ -109,7 +109,7 @@ resource "aws_ecs_task_definition" "nova-queue" {
 }
 
 resource "aws_ecs_service" "nova-queue" {
-  name            = "nova"
+  name            = "nova-queue"
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.nova-queue.arn}"
   desired_count   = 1

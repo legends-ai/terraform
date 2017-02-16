@@ -5,9 +5,6 @@
     "cpu": 1024,
     "memory": 2560,
     "essential": true,
-    "links": [
-      "queue"
-    ],
     "entryPoint": [
       "java",
       "-Dlogback.configurationFile=logback.prod.xml",
