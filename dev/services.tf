@@ -102,6 +102,19 @@ resource "aws_ecs_service" "nova" {
   desired_count   = 1
 }
 
+// Nova Queue
+resource "aws_ecs_task_definition" "nova-queue" {
+  family                = "nova-queue"
+  container_definitions = "${file("task-definitions/nova-queue.json")}"
+}
+
+resource "aws_ecs_service" "nova-queue" {
+  name            = "nova"
+  cluster         = "${aws_ecs_cluster.main.id}"
+  task_definition = "${aws_ecs_task_definition.nova-queue.arn}"
+  desired_count   = 1
+}
+
 // Vulgate
 resource "aws_ecs_task_definition" "vulgate" {
   family                = "vulgate"
