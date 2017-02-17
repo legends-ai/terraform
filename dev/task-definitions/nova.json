@@ -3,11 +3,18 @@
     "name": "nova",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/nova:latest",
     "cpu": 1024,
-    "memory": 4096,
+    "memory": 6144,
     "essential": true,
     "entryPoint": [
       "java",
       "-Dlogback.configurationFile=logback.prod.xml",
+      "-Dcom.sun.management.jmxremote.rmi.port=9090",
+      "-Dcom.sun.management.jmxremote=true",
+      "-Dcom.sun.management.jmxremote.port=9090",
+      "-Dcom.sun.management.jmxremote.ssl=false",
+      "-Dcom.sun.management.jmxremote.authenticate=false",
+      "-Dcom.sun.management.jmxremote.local.only=false",
+      "-Djava.rmi.server.hostname=localhost",
       "-jar",
       "/app/nova-assembly.jar",
       "--redis_host=muramasa.dev",
@@ -25,6 +32,12 @@
       "--stats_prefix=dev.nova",
       "--statsd_host=muramasa.dev",
       "--statsd_port=8125"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 9090,
+        "hostPort": 9090
+      }
     ],
     "logConfiguration": {
       "logDriver": "awslogs",

@@ -3,14 +3,14 @@
     "name": "alexandria",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/alexandria",
     "cpu": 512,
-    "memory": 12288,
+    "memory": 10240,
     "essential": true,
     "entryPoint": [
       "java",
       "-Dlogback.configurationFile=logback.prod.xml",
-      "-Dcom.sun.management.jmxremote.rmi.port=9090",
+      "-Dcom.sun.management.jmxremote.rmi.port=22047",
       "-Dcom.sun.management.jmxremote=true",
-      "-Dcom.sun.management.jmxremote.port=9090",
+      "-Dcom.sun.management.jmxremote.port=22047",
       "-Dcom.sun.management.jmxremote.ssl=false",
       "-Dcom.sun.management.jmxremote.authenticate=false",
       "-Dcom.sun.management.jmxremote.local.only=false",
@@ -27,16 +27,16 @@
     ],
     "portMappings": [
       {
-        "containerPort": 9090,
-        "hostPort": 9090
-      },
-      {
         "containerPort": 22045,
         "hostPort": 22045
       },
       {
         "containerPort": 22046,
         "hostPort": 22046
+      },
+      {
+        "containerPort": 22047,
+        "hostPort": 22047
       }
     ],
     "logConfiguration": {
