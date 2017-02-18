@@ -3,11 +3,8 @@
     "name": "lucinda",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/lucinda:latest",
     "cpu": 256,
-    "memory": 2048,
+    "memory": 2560,
     "essential": true,
-    "links": [
-      "cache"
-    ],
     "entryPoint": [
       "java",
       "-Dlogback.configurationFile=logback.prod.xml",
@@ -15,7 +12,6 @@
       "/app/lucinda-assembly.jar",
       "--alexandria_host=muramasa.dev",
       "--alexandria_port=22045",
-      "--redis_host=cache",
       "--vulgate_host=muramasa.dev",
       "--vulgate_port=6205",
       "--stats_prefix=dev.lucinda",
@@ -32,21 +28,6 @@
         "hostPort": 45046
       }
     ],
-    "logConfiguration": {
-      "logDriver": "awslogs",
-      "options": {
-        "awslogs-group": "asuna",
-        "awslogs-region": "us-east-1",
-        "awslogs-stream-prefix": "lucinda"
-      }
-    }
-  },
-  {
-    "name": "cache",
-    "image": "redis:3.2.5",
-    "cpu": 128,
-    "memory": 512,
-    "essential": true,
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
