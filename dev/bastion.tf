@@ -5,9 +5,7 @@ resource "aws_instance" "bastion" {
   subnet_id     = "${aws_subnet.main.id}"
 
   vpc_security_group_ids = [
-    "${aws_security_group.cassandra.id}",
-    "${aws_security_group.ecs.id}",
-    "${aws_security_group.bastion.id}",
+    "${aws_security_group.bastion.id}"
   ]
 
   associate_public_ip_address = true

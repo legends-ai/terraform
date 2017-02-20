@@ -25,9 +25,18 @@ resource "aws_security_group" "cassandra" {
   description = "Allows all traffic"
   vpc_id      = "${aws_vpc.main.id}"
 
+  // CQL Native Transport Port
   ingress {
     from_port   = 9042
     to_port     = 9042
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  // JMX Monitoring Port
+  ingress {
+    from_port   = 7199
+    to_port     = 7199
     protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }
