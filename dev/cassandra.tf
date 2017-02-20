@@ -6,8 +6,6 @@ resource "aws_instance" "cassandra_0" {
   vpc_security_group_ids = ["${aws_security_group.cassandra.id}"]
 
   # TODO(igm): forces new resource
-
-
   # associate_public_ip_address = false
 
   tags {
