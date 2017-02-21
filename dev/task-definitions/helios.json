@@ -2,8 +2,8 @@
   {
     "name": "helios",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/helios:latest",
-    "cpu": 64,
-    "memory": 512,
+    "cpu": 320,
+    "memory": 1024,
     "essential": true,
     "entryPoint": [
       "java",
