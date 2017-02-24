@@ -60,7 +60,7 @@ resource "aws_ecs_service" "legends-ai" {
   name            = "legends-ai"
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.legends-ai.arn}"
-  desired_count   = 1
+  desired_count   = 0
 }
 
 // Lucinda

@@ -1,5 +1,5 @@
 resource "aws_instance" "cassandra_0" {
-  instance_type          = "t2.medium"
+  instance_type          = "c4.large"
   ami                    = "${lookup(var.cassandra_amis, var.region)}"
   key_name               = "${aws_key_pair.user.key_name}"
   subnet_id              = "${aws_subnet.main.id}"
