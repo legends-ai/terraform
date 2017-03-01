@@ -20,7 +20,7 @@
       "--redis_host=muramasa.dev",
       "--redis_port=6379",
       "--ingest_max_interval_seconds=10",
-      "--ingest_max_batch_size=30",
+      "--ingest_max_batch_size=200",
       "--alexandria_host=muramasa.dev",
       "--alexandria_port=22045",
       "--charon_host=muramasa.dev",

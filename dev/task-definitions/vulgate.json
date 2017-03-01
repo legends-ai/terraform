@@ -38,7 +38,7 @@
   },
   {
     "name": "cache",
-    "image": "redis:3.2.5",
+    "image": "redis:3.2.8",
     "cpu": 128,
     "memory": 512,
     "essential": true,
