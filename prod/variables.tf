@@ -55,7 +55,7 @@ variable "cassandra_amis" {
 
   # TODO: support other regions.
   default = {
-    us-east-1 = "ami-17326800"
+    us-east-1 = "ami-9334ec85"
   }
 }
 

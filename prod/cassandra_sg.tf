@@ -10,10 +10,34 @@ resource "aws_security_group" "cassandra" {
     cidr_blocks = ["10.0.0.0/16"]
   }
 
+  // Cassandra Thrift Client Port
+  ingress {
+    from_port   = 9160
+    to_port     = 9160
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
   // JMX Monitoring Port
   ingress {
     from_port   = 7199
     to_port     = 7199
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  // Internode Communication Port
+  ingress {
+    from_port   = 7000
+    to_port     = 7000
+    protocol    = "tcp"
+    cidr_blocks = ["10.0.0.0/16"]
+  }
+
+  // Internode Communication Secure Port
+  ingress {
+    from_port   = 7001
+    to_port     = 7001
     protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/16"]
   }

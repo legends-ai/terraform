@@ -50,7 +50,7 @@ resource "aws_ebs_volume" "cassandra_0" {
   type              = "gp2"
 
   tags {
-    Name = "Cassandra 0 data"
+    Name = "prod:cassandra_0 data"
   }
 }
 
