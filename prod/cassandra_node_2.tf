@@ -1,4 +1,4 @@
-resource "aws_instance" "cassandra_0" {
+resource "aws_instance" "cassandra_2" {
   instance_type          = "m4.large"
   ami                    = "${lookup(var.cassandra_amis, var.region)}"
   key_name               = "${aws_key_pair.user.key_name}"
@@ -9,7 +9,7 @@ resource "aws_instance" "cassandra_0" {
   # associate_public_ip_address = false
 
   tags {
-    Name = "cassandra_0"
+    Name = "prod:cassandra_2"
   }
 
   root_block_device {
@@ -19,46 +19,10 @@ resource "aws_instance" "cassandra_0" {
   }
 }
 
-resource "aws_security_group" "cassandra" {
-  name        = "cassandra"
-  description = "Allows all traffic"
-  vpc_id      = "${aws_vpc.main.id}"
-
-  // CQL Native Transport Port
-  ingress {
-    from_port   = 9042
-    to_port     = 9042
-    protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"]
-  }
-
-  // JMX Monitoring Port
-  ingress {
-    from_port   = 7199
-    to_port     = 7199
-    protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
-resource "aws_volume_attachment" "cassandra_0" {
+resource "aws_volume_attachment" "cassandra_2" {
   device_name = "/dev/xvdh"
-  volume_id   = "${aws_ebs_volume.cassandra_0.id}"
-  instance_id = "${aws_instance.cassandra_0.id}"
+  volume_id   = "${aws_ebs_volume.cassandra_2.id}"
+  instance_id = "${aws_instance.cassandra_2.id}"
 
   provisioner "remote-exec" {
     inline = [
@@ -68,7 +32,7 @@ resource "aws_volume_attachment" "cassandra_0" {
     ]
 
     connection {
-      host                = "${aws_instance.cassandra_0.private_ip}"
+      host                = "${aws_instance.cassandra_2.private_ip}"
       type                = "ssh"
       user                = "ubuntu"
       timeout             = "5m"
@@ -80,9 +44,9 @@ resource "aws_volume_attachment" "cassandra_0" {
   }
 }
 
-resource "aws_ebs_volume" "cassandra_0" {
+resource "aws_ebs_volume" "cassandra_2" {
   availability_zone = "${var.availability_zone}"
-  size              = 40
+  size              = 100
   type              = "gp2"
 
   tags {
@@ -90,15 +54,10 @@ resource "aws_ebs_volume" "cassandra_0" {
   }
 }
 
-resource "aws_eip" "cassandra_0" {
-  instance = "${aws_instance.cassandra_0.id}"
-  vpc      = true
-}
-
-resource "aws_route53_record" "cassandra" {
+resource "aws_route53_record" "cassandra_2" {
   zone_id = "${aws_route53_zone.main.zone_id}"
-  name    = "node-0.cassandra.${aws_route53_zone.main.name}"
+  name    = "node-2.cassandra.${aws_route53_zone.main.name}"
   type    = "A"
   ttl     = "300"
-  records = ["${aws_eip.cassandra_0.private_ip}"]
+  records = ["${aws_instance.cassandra_2.private_ip}"]
 }
