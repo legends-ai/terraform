@@ -21,6 +21,7 @@
       "--cassandra_pass=cassandra",
       "--keyspace=alexandria_dev",
       "--cassandra_hosts=node-0.cassandra.dev,node-1.cassandra.dev,node-2.cassandra.dev",
+      "--cassandra_replication_factor=3",
       "--lucinda_statistics_ttl=259200",
       "--lucinda_all_champion_statistics_ttl=259200",
       "--get_sum_parallelism=1000",
