@@ -1,3 +1,4 @@
+/*
 resource "aws_instance" "cassandra_2" {
   instance_type          = "m4.large"
   ami                    = "${lookup(var.cassandra_amis, var.region)}"
@@ -61,3 +62,4 @@ resource "aws_route53_record" "cassandra_2" {
   ttl     = "300"
   records = ["${aws_instance.cassandra_2.private_ip}"]
 }
+*/
