@@ -1,18 +1,16 @@
 resource "aws_instance" "cassandra_0" {
-  instance_type               = "m4.2xlarge"
+  instance_type               = "m4.large"
   ami                         = "${lookup(var.cassandra_amis, var.region)}"
+  placement_group             = "${aws_placement_group.main.id}"
   key_name                    = "${aws_key_pair.user.key_name}"
   subnet_id                   = "${aws_subnet.main.id}"
   vpc_security_group_ids      = ["${aws_security_group.cassandra.id}"]
-
-  # TODO(igm): forces new resource
-
-
-  # associate_public_ip_address = false
+  associate_public_ip_address = true
 
   tags {
     Name = "dev:cassandra_0"
   }
+
   root_block_device {
     volume_type           = "gp2"
     volume_size           = "20"  # GB

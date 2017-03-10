@@ -50,6 +50,7 @@ resource "aws_ecs_cluster" "main" {
 resource "aws_instance" "ecs" {
   instance_type               = "${var.ecs_instance_type}"
   ami                         = "${lookup(var.amis, var.region)}"
+  placement_group             = "${aws_placement_group.main.id}"
   key_name                    = "${aws_key_pair.user.key_name}"
   subnet_id                   = "${aws_subnet.main.id}"
   iam_instance_profile        = "${aws_iam_instance_profile.ecs.name}"

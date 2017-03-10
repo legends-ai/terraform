@@ -24,7 +24,7 @@
       "--c*_replication_factor=1",
       "--get_match_meta_parallelism=1000",
       "--get_rankings_parallelism=1000",
-      "--get_sum_parallelism=500",
+      "--get_sum_parallelism=200",
       "--lucinda_statistics_ttl=259200",
       "--lucinda_all_champion_statistics_ttl=259200",
       "--stats_prefix=dev.alexandria",

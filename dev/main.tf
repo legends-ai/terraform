@@ -48,3 +48,8 @@ resource "aws_subnet" "main_2" {
 resource "aws_internet_gateway" "main" {
   vpc_id = "${aws_vpc.main.id}"
 }
+
+resource "aws_placement_group" "main" {
+  name = "dev-pg"
+  strategy = "cluster"
+}
