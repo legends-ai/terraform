@@ -7,7 +7,7 @@
     "essential": true,
     "entryPoint": [
       "java",
-      "-Dlogback.configurationFile=logback.prod.xml",
+      "-Dlogback.configurationFile=logback.nova_debug.xml",
       "-Dcom.sun.management.jmxremote.rmi.port=9090",
       "-Dcom.sun.management.jmxremote=true",
       "-Dcom.sun.management.jmxremote.port=9090",
@@ -19,7 +19,7 @@
       "/app/nova-assembly.jar",
       "--redis_host=muramasa.dev",
       "--redis_port=6379",
-      "--ingest_max_interval_seconds=10",
+      "--ingest_max_interval_seconds=30",
       "--ingest_max_batch_size=60",
       "--alexandria_host=muramasa.dev",
       "--alexandria_port=22045",
