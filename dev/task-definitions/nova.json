@@ -7,7 +7,7 @@
     "essential": true,
     "entryPoint": [
       "java",
-      "-Dlogback.configurationFile=logback.nova_debug.xml",
+      "-Dlogback.configurationFile=logback.prod.xml",
       "-Dcom.sun.management.jmxremote.rmi.port=9090",
       "-Dcom.sun.management.jmxremote=true",
       "-Dcom.sun.management.jmxremote.port=9090",
