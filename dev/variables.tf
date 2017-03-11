@@ -27,7 +27,7 @@ variable "amis" {
 
   # TODO: support other regions.
   default = {
-    us-east-1 = "ami-d69c74c0"
+    us-east-1 = "ami-b2df2ca4"
   }
 }
 
@@ -55,12 +55,12 @@ variable "cassandra_amis" {
 
   # TODO: support other regions.
   default = {
-    us-east-1 = "ami-17326800"
+    us-east-1 = "ami-9334ec85"
   }
 }
 
 variable "ecs_instance_type" {
-  default = "r4.xlarge"
+  default = "m4.xlarge"
 }
 
 variable "ssh_pubkey_file" {

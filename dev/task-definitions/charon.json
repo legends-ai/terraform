@@ -22,7 +22,7 @@
       "--req_per_10sec=3000",
       "--capacity_multiplier=0.8",
       "--stats_prefix=dev.charon",
-      "--statsd_host=muramasa.dev",
+      "--statsd_host=ecs-0.muramasa.dev",
       "--statsd_port=8125"
     ],
     "portMappings": [

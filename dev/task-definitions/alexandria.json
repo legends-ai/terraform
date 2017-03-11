@@ -2,7 +2,7 @@
   {
     "name": "alexandria",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/alexandria",
-    "cpu": 512,
+    "cpu": 4032,
     "memory": 10240,
     "essential": true,
     "entryPoint": [
@@ -22,13 +22,12 @@
       "--c*_pass=bitnami",
       "--c*_hosts=node-0.cassandra.dev",
       "--c*_replication_factor=1",
-      "--get_match_meta_parallelism=1000",
-      "--get_rankings_parallelism=1000",
-      "--get_sum_parallelism=200",
+      "--c*_max_conn_per_host=4",
+      "--c*_max_req_per_conn=32768",
       "--lucinda_statistics_ttl=259200",
       "--lucinda_all_champion_statistics_ttl=259200",
       "--stats_prefix=dev.alexandria",
-      "--statsd_host=muramasa.dev",
+      "--statsd_host=ecs-1.muramasa.dev",
       "--statsd_port=8125"
     ],
     "portMappings": [

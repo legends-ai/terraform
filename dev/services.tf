@@ -14,6 +14,11 @@ resource "aws_ecs_service" "alexandria" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.alexandria.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == alexandria"
+  }
 }
 
 // Charon
@@ -35,6 +40,11 @@ resource "aws_ecs_service" "charon" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.charon.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }
 
 // Helios
@@ -48,6 +58,11 @@ resource "aws_ecs_service" "helios" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.helios.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }
 
 // Legends.ai
@@ -61,6 +76,11 @@ resource "aws_ecs_service" "legends-ai" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.legends-ai.arn}"
   desired_count   = 0
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }
 
 // Lucinda
@@ -74,6 +94,11 @@ resource "aws_ecs_service" "lucinda" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.lucinda.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }
 
 // Luna
@@ -87,6 +112,11 @@ resource "aws_ecs_service" "luna" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.luna.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }
 
 // Nova
@@ -100,6 +130,11 @@ resource "aws_ecs_service" "nova" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.nova.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }
 
 // Nova Queue
@@ -113,6 +148,11 @@ resource "aws_ecs_service" "nova-queue" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.nova-queue.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }
 
 // Vulgate
@@ -126,4 +166,9 @@ resource "aws_ecs_service" "vulgate" {
   cluster         = "${aws_ecs_cluster.main.id}"
   task_definition = "${aws_ecs_task_definition.vulgate.arn}"
   desired_count   = 1
+
+  placement_constraints {
+    type = "memberOf"
+    expression = "attribute:type == general"
+  }
 }

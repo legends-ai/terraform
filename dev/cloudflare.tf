@@ -13,6 +13,6 @@ resource "cloudflare_record" "bastion" {
 resource "cloudflare_record" "dev" {
   domain = "asuna.io"
   name   = "muramasa.dev"
-  value  = "${aws_eip.ecs.public_ip}"
+  value  = "${aws_instance.ecs_0.public_ip}"
   type   = "A"
 }
