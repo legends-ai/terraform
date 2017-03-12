@@ -1,0 +1,41 @@
+[
+  {
+    "name": "helios",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/helios:latest",
+    "cpu": 320,
+    "memory": 1024,
+    "essential": true,
+    "entryPoint": [
+      "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
+      "-jar",
+      "/app/helios-assembly.jar",
+      "--charon_host=ecs-0.muramasa.dev",
+      "--charon_port=5609",
+      "--lucinda_host=ecs-0.muramasa.dev",
+      "--lucinda_port=45045",
+      "--luna_host=ecs-0.muramasa.dev",
+      "--luna_port=2389",
+      "--vulgate_host=ecs-0.muramasa.dev",
+      "--vulgate_port=6205"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 7921,
+        "hostPort": 7921
+      },
+      {
+        "containerPort": 7922,
+        "hostPort": 7922
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "helios"
+      }
+    }
+  }
+]

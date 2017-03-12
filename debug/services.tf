@@ -1,19 +1,12 @@
-/*
-// Alexandria
-data "template_file" "alexandria_task_definition" {
-  template = "${file("task-definitions/alexandria.json")}"
-
-  vars {
-    aurora_writer = "${aws_rds_cluster.aurora-dev.endpoint}"
-    aurora_reader = "${aws_rds_cluster.aurora-dev.reader_endpoint}"
-  }
-}
-*/
-
 // Alexandria
 resource "aws_ecs_task_definition" "alexandria" {
   family                = "alexandria"
   container_definitions = "${file("task-definitions/alexandria.json")}"
+
+  volume {
+    name      = "alexandria-storage"
+    host_path = "/ecs/alexandria-storage"
+  }
 }
 
 resource "aws_ecs_service" "alexandria" {
@@ -23,7 +16,7 @@ resource "aws_ecs_service" "alexandria" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == alexandria"
   }
 }
@@ -49,7 +42,7 @@ resource "aws_ecs_service" "charon" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }
@@ -67,7 +60,7 @@ resource "aws_ecs_service" "helios" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }
@@ -85,7 +78,7 @@ resource "aws_ecs_service" "legends-ai" {
   desired_count   = 0
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }
@@ -103,7 +96,7 @@ resource "aws_ecs_service" "lucinda" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }
@@ -121,7 +114,7 @@ resource "aws_ecs_service" "luna" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }
@@ -139,7 +132,7 @@ resource "aws_ecs_service" "nova" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }
@@ -157,7 +150,7 @@ resource "aws_ecs_service" "nova-queue" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }
@@ -175,7 +168,7 @@ resource "aws_ecs_service" "vulgate" {
   desired_count   = 1
 
   placement_constraints {
-    type       = "memberOf"
+    type = "memberOf"
     expression = "attribute:type == general"
   }
 }

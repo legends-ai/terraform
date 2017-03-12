@@ -1,0 +1,23 @@
+[
+  {
+    "name": "nova-queue",
+    "image": "redis:3.2.8",
+    "cpu": 256,
+    "memory": 512,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 6379,
+        "hostPort": 6379
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "nova-queue"
+      }
+    }
+  }
+]

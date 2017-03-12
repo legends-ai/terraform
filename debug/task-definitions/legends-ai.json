@@ -1,0 +1,30 @@
+[
+  {
+    "name": "legends-ai",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/legends-ai:latest",
+    "cpu": 128,
+    "memory": 512,
+    "essential": true,
+    "entryPoint": [
+      "node",
+      "build/server.js"
+    ],
+    "environment": [
+      {"name": "PORT", "value": "7448"}
+    ],
+    "portMappings": [
+      {
+        "containerPort": 7448,
+        "hostPort": 7448
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "legends-ai"
+      }
+    }
+  }
+]

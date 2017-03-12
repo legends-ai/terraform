@@ -1,0 +1,24 @@
+:root = https://search-muramasa2-es-ng5ryd7trpah25jtgooxbreoe4.us-east-1.es.amazonaws.com
+
+GET :root
+
+# Indices
+GET :root/_cat/indices?v
+
+# CWL index
+GET :root/cwl-*
+
+# CWL mapping
+PUT :root/cwl-*
+{
+  "mappings": {
+    "asuna": {
+      "properties": {
+        "elapsedTimeMs": { "type": "integer" }
+      }
+    }
+  }
+}
+
+# Delete everything
+DELETE :root/cwl-2017.02.10

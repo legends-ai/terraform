@@ -1,0 +1,54 @@
+[
+  {
+    "name": "vulgate",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/vulgate:latest",
+    "cpu": 256,
+    "memory": 1024,
+    "essential": true,
+    "links": [
+      "cache"
+    ],
+    "entryPoint": [
+      "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
+      "-jar",
+      "/app/vulgate-assembly.jar",
+      "--charon_host=ecs-0.muramasa.debug",
+      "--charon_port=5609",
+      "--redis_host=cache",
+      "--redis_port=6379",
+      "--stats_prefix=debug.vulgate",
+      "--statsd_host=ecs-0.muramasa.debug",
+      "--statsd_port=8125"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 6205,
+        "hostPort": 6205
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "vulgate"
+      }
+    }
+  },
+  {
+    "name": "cache",
+    "image": "redis:3.2.8",
+    "cpu": 128,
+    "memory": 512,
+    "essential": true,
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "vulgate"
+      }
+    }
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "Version": "2008-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "AWS": "464622532012"
+      },
+      "Condition": {
+        "StringEquals": {
+          "sts:ExternalId": "${dd_external_id}"
+        }
+      },
+      "Effect": "Allow"
+    }
+  ]
+}

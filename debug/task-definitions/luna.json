@@ -1,0 +1,42 @@
+[
+  {
+    "name": "luna",
+    "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/luna:latest",
+    "cpu": 512,
+    "memory": 1024,
+    "essential": true,
+    "entryPoint": [
+      "java",
+      "-Dlogback.configurationFile=logback.prod.xml",
+      "-jar",
+      "/app/luna-assembly.jar",
+      "--alexandria_host=ecs-1.muramasa.debug",
+      "--alexandria_port=22045",
+      "--charon_host=ecs-0.muramasa.debug",
+      "--charon_port=5609",
+      "--vulgate_host=ecs-0.muramasa.debug",
+      "--vulgate_port=6205",
+      "--stats_prefix=debug.luna",
+      "--statsd_host=ecs-0.muramasa.debug",
+      "--statsd_port=8125"
+    ],
+    "portMappings": [
+      {
+        "containerPort": 2389,
+        "hostPort": 2389
+      },
+      {
+        "containerPort": 2390,
+        "hostPort": 2390
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "asuna",
+        "awslogs-region": "us-east-1",
+        "awslogs-stream-prefix": "luna"
+      }
+    }
+  }
+]

@@ -19,7 +19,7 @@ variable "availability_zone_2" {
 
 variable "ecs_cluster_name" {
   description = "The name of the Amazon ECS cluster."
-  default     = "dev"
+  default     = "debug"
 }
 
 variable "amis" {
@@ -65,12 +65,12 @@ variable "ecs_instance_type" {
 
 variable "ssh_pubkey_file" {
   description = "Path to an SSH public key"
-  default     = "~/asuna-dev.pub"
+  default     = "~/asuna-debug.pub"
 }
 
 variable "ssh_privkey_file" {
   description = "Path to an SSH private key"
-  default     = "~/asuna-dev.pem"
+  default     = "~/asuna-debug.pem"
 }
 
 variable "bastion_amis" {
@@ -91,22 +91,6 @@ variable "allowed_cidr_blocks" {
 
 variable "internal_cidr_blocks" {
   default = "0.0.0.0/0"
-}
-
-variable "aurora_instance_type" {
-  default = "db.r3.large"
-}
-
-variable "aurora_database" {
-  default = "alexandria_dev"
-}
-
-variable "aurora_username" {
-  default = "asuna"
-}
-
-variable "aurora_password" {
-  default = "asunadevcluster"
 }
 
 variable "cloudflare_email" {}
