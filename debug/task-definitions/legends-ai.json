@@ -1,6 +1,6 @@
 [
   {
-    "name": "legends-ai",
+    "name": "legends-ai_debug",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/legends-ai:latest",
     "cpu": 128,
     "memory": 512,

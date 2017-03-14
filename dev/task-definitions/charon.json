@@ -3,7 +3,7 @@
     "name": "charon",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/charon:latest",
     "cpu": 768,
-    "memory": 5120,
+    "memory": 3072,
     "essential": true,
     "entryPoint": [
       "java",

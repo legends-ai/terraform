@@ -1,16 +1,15 @@
-/*
 // Alexandria
 data "template_file" "alexandria_task_definition" {
   template = "${file("task-definitions/alexandria.json")}"
 
   vars {
-    aurora_writer = "${aws_rds_cluster.aurora-dev.endpoint}"
-    aurora_reader = "${aws_rds_cluster.aurora-dev.reader_endpoint}"
+    aurora_writer   = "aurora-dev.cluster-cfualisfu68a.us-east-1.rds.amazonaws.com"
+    aurora_reader   = "aurora-dev-1.cfualisfu68a.us-east-1.rds.amazonaws.com"
+    aurora_username = "${var.aurora_username}"
+    aurora_password = "${var.aurora_password}"
   }
 }
-*/
 
-// Alexandria
 resource "aws_ecs_task_definition" "alexandria" {
   family                = "alexandria"
   container_definitions = "${file("task-definitions/alexandria.json")}"
@@ -24,7 +23,7 @@ resource "aws_ecs_service" "alexandria" {
 
   placement_constraints {
     type       = "memberOf"
-    expression = "attribute:type == alexandria"
+    expression = "attribute:type == general"
   }
 }
 

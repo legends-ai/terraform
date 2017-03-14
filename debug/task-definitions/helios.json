@@ -1,6 +1,6 @@
 [
   {
-    "name": "helios",
+    "name": "helios_debug",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/helios:latest",
     "cpu": 320,
     "memory": 1024,

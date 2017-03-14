@@ -8,7 +8,7 @@ resource "aws_instance" "cassandra_0" {
   associate_public_ip_address = true
 
   tags {
-    Name = "dev:cassandra_0"
+    Name = "debug:cassandra_0"
   }
 
   root_block_device {

@@ -1,6 +1,6 @@
 [
   {
-    "name": "lucinda",
+    "name": "lucinda_debug",
     "image": "096202052535.dkr.ecr.us-east-1.amazonaws.com/lucinda:latest",
     "cpu": 256,
     "memory": 2560,

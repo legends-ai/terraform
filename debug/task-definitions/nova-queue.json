@@ -1,6 +1,6 @@
 [
   {
-    "name": "nova-queue",
+    "name": "nova-queue_debug",
     "image": "redis:3.2.8",
     "cpu": 256,
     "memory": 512,

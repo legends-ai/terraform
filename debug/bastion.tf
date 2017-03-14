@@ -14,7 +14,7 @@ resource "aws_instance" "bastion" {
   source_dest_check           = false
 
   tags {
-    Name = "bastion"
+    Name = "debug:bastion"
   }
 
   root_block_device {

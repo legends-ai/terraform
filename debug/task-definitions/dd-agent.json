@@ -1,6 +1,6 @@
 [
     {
-        "name": "dd-agent",
+        "name": "dd-agent_debug",
         "image": "datadog/docker-dd-agent:latest",
         "cpu": 64,
         "memory": 128,

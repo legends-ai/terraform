@@ -1,6 +1,6 @@
 // Alexandria
 resource "aws_ecs_task_definition" "alexandria" {
-  family                = "alexandria"
+  family                = "alexandria_debug"
   container_definitions = "${file("task-definitions/alexandria.json")}"
 
   volume {
@@ -31,7 +31,7 @@ data "template_file" "charon_task_definition" {
 }
 
 resource "aws_ecs_task_definition" "charon" {
-  family                = "charon"
+  family                = "charon_debug"
   container_definitions = "${data.template_file.charon_task_definition.rendered}"
 }
 
@@ -49,7 +49,7 @@ resource "aws_ecs_service" "charon" {
 
 // Helios
 resource "aws_ecs_task_definition" "helios" {
-  family                = "helios"
+  family                = "helios_debug"
   container_definitions = "${file("task-definitions/helios.json")}"
 }
 
@@ -67,7 +67,7 @@ resource "aws_ecs_service" "helios" {
 
 // Legends.ai
 resource "aws_ecs_task_definition" "legends-ai" {
-  family                = "legends-ai"
+  family                = "legends-ai_debug"
   container_definitions = "${file("task-definitions/legends-ai.json")}"
 }
 
@@ -85,7 +85,7 @@ resource "aws_ecs_service" "legends-ai" {
 
 // Lucinda
 resource "aws_ecs_task_definition" "lucinda" {
-  family                = "lucinda"
+  family                = "lucinda_debug"
   container_definitions = "${file("task-definitions/lucinda.json")}"
 }
 
@@ -103,7 +103,7 @@ resource "aws_ecs_service" "lucinda" {
 
 // Luna
 resource "aws_ecs_task_definition" "luna" {
-  family                = "luna"
+  family                = "luna_debug"
   container_definitions = "${file("task-definitions/luna.json")}"
 }
 
@@ -121,7 +121,7 @@ resource "aws_ecs_service" "luna" {
 
 // Nova
 resource "aws_ecs_task_definition" "nova" {
-  family                = "nova"
+  family                = "nova_debug"
   container_definitions = "${file("task-definitions/nova.json")}"
 }
 
@@ -139,7 +139,7 @@ resource "aws_ecs_service" "nova" {
 
 // Nova Queue
 resource "aws_ecs_task_definition" "nova-queue" {
-  family                = "nova-queue"
+  family                = "nova-queue_debug"
   container_definitions = "${file("task-definitions/nova-queue.json")}"
 }
 
@@ -157,7 +157,7 @@ resource "aws_ecs_service" "nova-queue" {
 
 // Vulgate
 resource "aws_ecs_task_definition" "vulgate" {
-  family                = "vulgate"
+  family                = "vulgate_debug"
   container_definitions = "${file("task-definitions/vulgate.json")}"
 }
 

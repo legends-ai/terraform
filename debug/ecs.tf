@@ -68,7 +68,7 @@ resource "aws_instance" "ecs_0" {
   user_data                   = "${data.template_file.ecs_0-config.rendered}"
 
   tags {
-    Name = "dev:ecs_0"
+    Name = "debug:ecs_0"
   }
 
   root_block_device {
@@ -99,7 +99,7 @@ resource "aws_instance" "ecs_1" {
   user_data                   = "${data.template_file.ecs_1-config.rendered}"
 
   tags {
-    Name = "dev:ecs_1"
+    Name = "debug:ecs_1"
   }
 
   root_block_device {

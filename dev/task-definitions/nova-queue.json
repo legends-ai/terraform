@@ -2,8 +2,8 @@
   {
     "name": "nova-queue",
     "image": "redis:3.2.8",
-    "cpu": 256,
-    "memory": 512,
+    "cpu": 64,
+    "memory": 128,
     "essential": true,
     "portMappings": [
       {
