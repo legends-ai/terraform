@@ -1,6 +1,6 @@
 resource "aws_security_group" "cassandra" {
-  name        = "dev:cassandra"
-  vpc_id      = "${aws_vpc.main.id}"
+  name   = "dev:cassandra"
+  vpc_id = "${aws_vpc.main.id}"
 
   // CQL Native Transport Port
   ingress {

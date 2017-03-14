@@ -16,3 +16,11 @@ resource "cloudflare_record" "dev" {
   value  = "${aws_instance.ecs_0.public_ip}"
   type   = "A"
 }
+
+resource "cloudflare_record" "helios" {
+  domain  = "asuna.io"
+  name    = "helios.dev"
+  value   = "${aws_alb.helios.dns_name}"
+  type    = "CNAME"
+  proxied = true
+}

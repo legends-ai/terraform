@@ -3,14 +3,6 @@ resource "aws_security_group" "ecs" {
   description = "Allows all traffic"
   vpc_id      = "${aws_vpc.main.id}"
 
-  // allow all
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["10.0.0.0/16"]
-  }
-
   // ssh
   ingress {
     from_port   = 22
@@ -52,6 +44,56 @@ data "template_file" "ecs_0-config" {
 
   vars {
     ecs_cluster_name = "${var.ecs_cluster_name}"
+  }
+}
+
+resource "aws_security_group" "helios_alb" {
+  name   = "dev:helios-lb"
+  vpc_id = "${aws_vpc.main.id}"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_alb" "helios" {
+  name            = "helios-dev"
+  internal        = false
+  security_groups = ["${aws_security_group.helios_alb.id}"]
+  subnets         = ["${aws_subnet.main.id}", "${aws_subnet.main_2.id}"]
+}
+
+resource "aws_alb_target_group" "helios" {
+  name     = "helios-dev"
+  port     = 7921
+  protocol = "HTTP"
+  vpc_id   = "${aws_vpc.main.id}"
+}
+
+resource "aws_alb_target_group_attachment" "helios" {
+  target_group_arn = "${aws_alb_target_group.helios.arn}"
+  target_id        = "${aws_instance.ecs_0.id}"
+  port             = 7921
+}
+
+resource "aws_alb_listener" "helios" {
+  load_balancer_arn = "${aws_alb.helios.arn}"
+  port              = "80"
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = "${aws_alb_target_group.helios.arn}"
+    type             = "forward"
   }
 }
 
@@ -161,3 +203,4 @@ resource "aws_route53_record" "ecs_1" {
   records = ["${aws_instance.ecs_1.private_ip}"]
 }
 */
+

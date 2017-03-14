@@ -27,8 +27,8 @@ resource "aws_db_parameter_group" "aurora" {
   family = "aurora5.6"
 
   parameter {
-    name  = "performance_schema"
-    value = 1
+    name         = "performance_schema"
+    value        = 1
     apply_method = "pending-reboot"
   }
 }
@@ -55,3 +55,4 @@ resource "aws_rds_cluster_instance" "aurora" {
   instance_class       = "db.r3.large"
 }
 */
+

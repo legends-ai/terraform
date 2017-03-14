@@ -63,3 +63,4 @@ resource "aws_route53_record" "cassandra_2" {
   records = ["${aws_instance.cassandra_2.private_ip}"]
 }
 */
+

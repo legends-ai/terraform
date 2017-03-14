@@ -50,6 +50,6 @@ resource "aws_internet_gateway" "main" {
 }
 
 resource "aws_placement_group" "main" {
-  name = "dev-pg"
+  name     = "dev-pg"
   strategy = "cluster"
 }
