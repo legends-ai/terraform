@@ -62,7 +62,7 @@ resource "aws_instance" "ecs_0" {
   key_name                    = "${aws_key_pair.user.key_name}"
   subnet_id                   = "${aws_subnet.main.id}"
   iam_instance_profile        = "${aws_iam_instance_profile.ecs.name}"
-  vpc_security_group_ids      = ["${aws_security_group.ecs.id}", "${aws_security_group.aurora.id}"]
+  vpc_security_group_ids      = ["${aws_security_group.ecs.id}"]
   ebs_optimized               = false
   associate_public_ip_address = true
   user_data                   = "${data.template_file.ecs_0-config.rendered}"
@@ -146,7 +146,7 @@ resource "aws_cloudwatch_log_group" "asuna" {
 
 resource "aws_route53_record" "ecs_0" {
   zone_id = "${aws_route53_zone.main.zone_id}"
-  name    = "ecs-0.muramasa.${aws_route53_zone.main.name}"
+  name    = "ecs.muramasa.${aws_route53_zone.main.name}"
   type    = "A"
   ttl     = "300"
   records = ["${aws_instance.ecs_0.private_ip}"]

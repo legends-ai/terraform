@@ -10,13 +10,13 @@
       "-Dlogback.configurationFile=logback.prod.xml",
       "-jar",
       "/app/helios-assembly.jar",
-      "--charon_host=ecs-0.muramasa.dev",
+      "--charon_host=${ecs_0}",
       "--charon_port=5609",
-      "--lucinda_host=ecs-0.muramasa.dev",
+      "--lucinda_host=${ecs_0}",
       "--lucinda_port=45045",
-      "--luna_host=ecs-0.muramasa.dev",
+      "--luna_host=${ecs_0}",
       "--luna_port=2389",
-      "--vulgate_host=ecs-0.muramasa.dev",
+      "--vulgate_host=${ecs_0}",
       "--vulgate_port=6205"
     ],
     "portMappings": [

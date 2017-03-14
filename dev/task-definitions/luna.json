@@ -10,14 +10,14 @@
       "-Dlogback.configurationFile=logback.prod.xml",
       "-jar",
       "/app/luna-assembly.jar",
-      "--alexandria_host=ecs-1.muramasa.dev",
+      "--alexandria_host=${ecs_0}",
       "--alexandria_port=22045",
-      "--charon_host=ecs-0.muramasa.dev",
+      "--charon_host=${ecs_0}",
       "--charon_port=5609",
-      "--vulgate_host=ecs-0.muramasa.dev",
+      "--vulgate_host=${ecs_0}",
       "--vulgate_port=6205",
       "--stats_prefix=dev.luna",
-      "--statsd_host=ecs-0.muramasa.dev",
+      "--statsd_host=${ecs_0}",
       "--statsd_port=8125"
     ],
     "portMappings": [
